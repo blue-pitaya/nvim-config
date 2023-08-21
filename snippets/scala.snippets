@@ -1,0 +1,39 @@
+snippet jsexporttoplevel
+  @JSExportTopLevel("${1:name}")
+  def ${1:name}(${2:}): Unit = {
+    Main.mainReducer.execute(${0:})
+  }
+snippet for
+  for {
+    ${0:}
+  } yield ()
+snippet scalatestclass
+  import org.scalatest.flatspec.AnyFlatSpec
+  import org.scalatest.matchers.should.Matchers
+  
+  class ${0:} extends AnyFlatSpec with Matchers {
+    "test" should "be good" in {
+      val testResult = "nice"
+      val expected = "nice"
+  
+      testResult shouldEqual expected
+    }
+  }
+snippet laminar_imports
+  import com.raquo.laminar.api.L._
+  import org.scalajs.dom
+snippet duration_import
+  import scala.concurrent.duration._
+snippet implicit_ec
+  (implicit ec: ExecutionContext)
+snippet cats_unsafe_implicit
+  import cats.effect.unsafe.implicits.global
+snippet circe_auto_fuckings
+  import io.circe.generic.auto._
+  import io.circe.syntax._
+  import org.http4s._
+  import org.http4s.circe._
+  import org.http4s.client.Client
+  import org.http4s.implicits._
+snippet scalajs_execution_context
+  import org.scalajs.macrotaskexecutor.MacrotaskExecutor.Implicits._
