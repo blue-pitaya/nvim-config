@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "lua", "vim", "help", "javascript" },
+  ensure_installed = { "lua", "vim", "help", "javascript", "typescript", "html", "css", "query" },
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
   -- Automatically install missing parsers when entering buffer
@@ -7,6 +7,7 @@ require'nvim-treesitter.configs'.setup {
   auto_install = false,
   highlight = {
     enable = true,
+    -- disable = { "html", "css" },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     -- disable = function(lang, buf)
     --     local max_filesize = 100 * 1024 -- 100 KB
@@ -22,3 +23,6 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+-- Treat vue files as html for correct syntax highligh in single file components
+vim.treesitter.language.register("html", "vue")

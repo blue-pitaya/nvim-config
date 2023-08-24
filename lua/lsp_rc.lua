@@ -56,16 +56,12 @@ vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(
 
 
 -- TYPESCRPT AND VUE
--- require: yarn global add @volar/vue-language-server
--- require: yarn global add typescript
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#volar
-
--- Volar config, you should specify path to tsserver yourself
+-- VUE
 require'lspconfig'.volar.setup{
   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
   init_options = {
     typescript = {
-      tsdk = os.getenv("HOME") .. '/.config/yarn/global/node_modules/typescript/lib'
+      tsdk = '/usr/lib/node_modules/typescript/lib'
     }
   }
 }

@@ -97,6 +97,8 @@ h('Structure', { fg = p.foam })
 h('Tag', { fg = p.foam })
 h('Underlined', { underline = true })
 h('Todo', { link = 'Comment' })
+h('Attribute', { fg = p.green })
+h('Property', { fg = p.foam })
 
 -- General
 h('StatusLineNC', {fg = c249, bg = c234})

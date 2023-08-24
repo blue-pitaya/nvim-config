@@ -27,7 +27,7 @@ return require('packer').startup(function(use)
   -- Status bar
   use 'nvim-lualine/lualine.nvim'
 
-  -- Telescope (fuzzy finder), needs: fd and rg installed
+  -- Telescope, needs: fd and rg installed
   use '~/projects/forks/telescope.nvim'
 
   -- Diff plugin
@@ -37,13 +37,6 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig' -- Huge repo of lsp configs
   use 'scalameta/nvim-metals' -- Scala plugin (syntax, lsp, code actions and more)
   use 'jose-elias-alvarez/null-ls.nvim' -- LSP injections from not so LSP lang tools
-
-  -- Prettier (do i still need it?)
-  use  {
-    'prettier/vim-prettier',
-    run = 'yarn install --frozen-lockfile --production',
-    ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'vue', 'svelte', 'yaml', 'html'}
-  }
 
   -- Autocompletion
   use 'hrsh7th/nvim-cmp'
@@ -64,6 +57,7 @@ return require('packer').startup(function(use)
 
   -- Treesitter
   use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-treesitter/playground'
 
   -- Find and replace
   use 'nvim-pack/nvim-spectre'
