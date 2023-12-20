@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "lua", "vim", "help", "javascript", "typescript", "html", "css", "query" },
+  ensure_installed = { "lua", "vim", "javascript", "typescript", "tsx", "html", "css", "query", "java", "zig", "go", "haskell", "scala", "rust", "python", "perl", "bash" },
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
   -- Automatically install missing parsers when entering buffer
@@ -24,5 +24,5 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
--- Treat vue files as html for correct syntax highligh in single file components
+-- Treat vue files as html for correct syntax highligh in single file components in vue.js
 vim.treesitter.language.register("html", "vue")

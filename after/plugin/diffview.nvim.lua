@@ -73,7 +73,7 @@ require("diffview").setup({
     view = {
       -- The `view` bindings are active in the diff buffers, only when the current
       -- tabpage is a Diffview.
-      ["<tab>"]      = actions.select_next_entry,         -- Open the diff for the next file
+      ["<tab>"]      = actions.toggle_files,         -- Open the diff for the next file
       ["J"]          = actions.select_next_entry,         -- Open the diff for the next file
       ["<s-tab>"]    = actions.select_prev_entry,         -- Open the diff for the previous file
       ["K"]          = actions.select_prev_entry,         -- Open the diff for the previous file

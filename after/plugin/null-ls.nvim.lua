@@ -4,7 +4,7 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.prettier.with({
-      filetypes = { "html", "css", "javascript", "typescript" },
+      filetypes = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact" },
     })
   },
 })

@@ -2,9 +2,9 @@ vim.cmd [[packadd packer.nvim]]
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
 return require('packer').startup(function(use)
-
-  -- -- Plugin dev: 
+  -- -- Plugin dev:
   -- use '/home/kodus/projects/nvim-scala-tools/nvim-plugin/'
+  -- use '/home/kodus/projects/higlight-marks.nvim'
 
   -- Packer itself :)
   use 'wbthomason/packer.nvim'
@@ -25,18 +25,19 @@ return require('packer').startup(function(use)
   }
 
   -- Status bar
-  use 'nvim-lualine/lualine.nvim'
+  use { 'nvim-lualine/lualine.nvim', commit = '05d78e9' }
 
   -- Telescope, needs: fd and rg installed
-  use '~/projects/forks/telescope.nvim'
+  use '~/projects/_forks/telescope.nvim'
 
   -- Diff plugin
   use 'sindrets/diffview.nvim'
 
   -- LSP & programming
-  use 'neovim/nvim-lspconfig' -- Huge repo of lsp configs
-  use 'scalameta/nvim-metals' -- Scala plugin (syntax, lsp, code actions and more)
+  use 'neovim/nvim-lspconfig'           -- Huge repo of lsp configs
+  use 'scalameta/nvim-metals'           -- Scala plugin (syntax, lsp, code actions and more)
   use 'jose-elias-alvarez/null-ls.nvim' -- LSP injections from not so LSP lang tools
+  use 'mfussenegger/nvim-jdtls'         -- Java plugin
 
   -- Autocompletion
   use 'hrsh7th/nvim-cmp'
@@ -53,16 +54,21 @@ return require('packer').startup(function(use)
 
   -- Snippets
   use { 'dcampos/nvim-snippy', commit = '834820d' }
-  use { 'dcampos/cmp-snippy',  commit = '9af1635' } -- Insert snippets in autocompletion
+  use { 'dcampos/cmp-snippy', commit = '9af1635' } -- Insert snippets in autocompletion
 
   -- Treesitter
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/playground'
 
   -- Find and replace
-  use 'nvim-pack/nvim-spectre'
+  -- use 'nvim-pack/nvim-spectre'
 
   -- Text/file navigation
-  use { 'ggandor/leap.nvim', requires = {"tpope/vim-repeat"} }
-end)
+  use { 'ggandor/leap.nvim', requires = { "tpope/vim-repeat" } }
 
+  -- Colors highlight
+  use { 'norcalli/nvim-colorizer.lua', commit = '36c610a' }
+
+  -- Vim tmux navigator
+  use { 'christoomey/vim-tmux-navigator', commit = '7db70e0' }
+end)

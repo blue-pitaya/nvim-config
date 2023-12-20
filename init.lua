@@ -13,8 +13,8 @@ vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 
 -- Show tabs
-vim.opt.list = true
-vim.opt.listchars = "tab:⦁."
+-- vim.opt.list = true
+-- vim.opt.listchars = "tab:⦁."
 
 -- Custom fillchars for prettier diffview
 vim.opt.fillchars:append { diff = "╱" }

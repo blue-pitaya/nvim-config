@@ -20,8 +20,8 @@ require('telescope').setup{
         ["<C-k>"] = "move_selection_previous"
       }
     },
-    file_ignore_patterns = { "project/target", "project/project", "target" },
-    path_display = {"smart"},
+    --file_ignore_patterns = { "project/target", "project/project", "target" },
+    path_display = {"absolute"},
     borderchars =  { "━", "┃", "━", "┃", "┏", "┓", "┛", "┗" },
     sorting_strategy = "ascending"
   },

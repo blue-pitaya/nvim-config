@@ -1,6 +1,3 @@
 ;; extends
-(script_element) @typescript
-
-(element (start_tag (tag_name) @tg_name (#eq? @tg_name "template"))) @html
-
-(style_element) @style_element
+;; Injection for vue script block
+(((raw_text) @el (#has-ancestor? @el script_element)) @injection.content (#set! injection.language "typescript"))
