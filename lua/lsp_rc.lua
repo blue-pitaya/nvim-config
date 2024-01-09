@@ -209,6 +209,30 @@ require 'lspconfig'.ruff_lsp.setup {
   }
 }
 
+-- PHP
+-- Config ref: https://github.com/yaegassy/coc-intelephense
+--require 'lspconfig'.intelephense.setup {
+--  settings = {
+--    intelephense = {
+--      files = {
+--        exclude = { "**/.git/**", "**/.svn/**", "**/.hg/**", "**/CVS/**", "**/.DS_Store/**", "**/node_modules/**", "**/bower_components/**", "**/vendor/**/{Tests,tests}/**", "**/.history/**", "**/vendor/**/vendor/**",
+--          "**/*.blade.php" }
+--      },
+--      diagnostics = {
+--        enable = true
+--      },
+--      telemetry = {
+--        enabled = false
+--      }
+--    }
+--  }
+--}
+-- require 'lspconfig'.phpactor.setup {
+--   init_options = {
+--     -- TODO: when bugs are fixed it will change?
+--     ["language_server_phpstan.enabled"] = nil,
+--   }
+-- }
 
 -- ANSIBLE
 -- sudo pacman -S ansible-language-server ansible-lint

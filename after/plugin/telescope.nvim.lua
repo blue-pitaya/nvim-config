@@ -51,7 +51,7 @@ vim.keymap.set("n", "<Leader><Leader>", function() require('telescope.builtin').
 vim.keymap.set("n", "<Space>h", ":Telescope help_tags<cr>")
 vim.keymap.set("n", "<Space>p", ":Telescope registers initial_mode=normal<cr>")
 vim.keymap.set("n", "<Space>s", function ()
-  require('telescope.builtin').git_status()
+  require('telescope.builtin').git_status({initial_mode='normal'})
 end)
 
 -- Live grep selected text

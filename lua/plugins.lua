@@ -71,4 +71,9 @@ return require('packer').startup(function(use)
 
   -- Vim tmux navigator
   use { 'christoomey/vim-tmux-navigator', commit = '7db70e0' }
+
+  use {
+    "williamboman/mason.nvim"
+  }
+  use 'mfussenegger/nvim-lint'
 end)

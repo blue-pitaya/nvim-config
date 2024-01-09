@@ -40,3 +40,6 @@ require('snippy_rc')
 
 -- Startup
 vim.cmd([[autocmd VimEnter * :clearjumps]])
+
+-- PHP XD
+vim.cmd([[au BufRead,BufNewFile *.blade.php setfiletype html]]);
