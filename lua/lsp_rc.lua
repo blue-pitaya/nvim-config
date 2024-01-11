@@ -227,12 +227,7 @@ require 'lspconfig'.ruff_lsp.setup {
 --    }
 --  }
 --}
--- require 'lspconfig'.phpactor.setup {
---   init_options = {
---     -- TODO: when bugs are fixed it will change?
---     ["language_server_phpstan.enabled"] = nil,
---   }
--- }
+require 'lspconfig'.phpactor.setup {}
 
 -- ANSIBLE
 -- sudo pacman -S ansible-language-server ansible-lint

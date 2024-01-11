@@ -75,5 +75,9 @@ return require('packer').startup(function(use)
   use {
     "williamboman/mason.nvim"
   }
-  use 'mfussenegger/nvim-lint'
+
+  --use { 'mhartington/formatter.nvim' }
+  use "stevearc/conform.nvim"
+
+  --use 'mfussenegger/nvim-lint'
 end)

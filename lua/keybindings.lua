@@ -25,10 +25,10 @@ vim.cmd([[autocmd FileType qf nnoremap <buffer> o :.cc<CR>]]) -- open file in qf
 -- Window bindings
 --noremap <silent> {Previous-Mapping} :<C-U>TmuxNavigatePrevious<cr>
 vim.keymap.set("n", "<C-Q>", "<C-W>q")
-vim.keymap.set("n", "<C-J>", function () vim.cmd("TmuxNavigateDown") end)
-vim.keymap.set("n", "<C-K>", function () vim.cmd("TmuxNavigateUp") end)
-vim.keymap.set("n", "<C-H>", function () vim.cmd("TmuxNavigateLeft") end)
-vim.keymap.set("n", "<C-L>", function () vim.cmd("TmuxNavigateRight") end)
+vim.keymap.set("n", "<C-J>", function() vim.cmd("TmuxNavigateDown") end)
+vim.keymap.set("n", "<C-K>", function() vim.cmd("TmuxNavigateUp") end)
+vim.keymap.set("n", "<C-H>", function() vim.cmd("TmuxNavigateLeft") end)
+vim.keymap.set("n", "<C-L>", function() vim.cmd("TmuxNavigateRight") end)
 vim.keymap.set("n", "+", "<C-W>+")
 vim.keymap.set("n", "-", "<C-W>-")
 vim.keymap.set("n", "<leader>v", ":vs<CR>")
@@ -45,7 +45,9 @@ vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end)
 vim.keymap.set("n", "gr",
   function() require 'telescope.builtin'.lsp_references({ show_line = false, initial_mode = 'normal' }) end)
 vim.keymap.set("n", "<Leader>r", function() vim.lsp.buf.rename() end)
-vim.keymap.set("n", "<Leader>f", function() vim.lsp.buf.format() end)
+vim.keymap.set("n", "<Leader>f", function() require('conform').format({ lsp_fallback = true }) end)
+--vim.keymap.set("n", "<Leader>f", function() vim.cmd("Format") end)
+
 vim.keymap.set("n", "gk", function() vim.lsp.buf.signature_help() end)
 vim.keymap.set("i", "<C-K>", function() vim.lsp.buf.signature_help() end)
 vim.keymap.set("i", "<C-J>", function() vim.lsp.buf.code_action() end)

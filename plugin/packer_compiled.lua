@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/kodus/.local/share/nvim/site/pack/packer/start/cmp-snippy",
     url = "https://github.com/dcampos/cmp-snippy"
   },
+  ["conform.nvim"] = {
+    loaded = true,
+    path = "/home/kodus/.local/share/nvim/site/pack/packer/start/conform.nvim",
+    url = "https://github.com/stevearc/conform.nvim"
+  },
   ["diffview.nvim"] = {
     loaded = true,
     path = "/home/kodus/.local/share/nvim/site/pack/packer/start/diffview.nvim",
@@ -144,11 +149,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kodus/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
     url = "https://github.com/mfussenegger/nvim-jdtls"
-  },
-  ["nvim-lint"] = {
-    loaded = true,
-    path = "/home/kodus/.local/share/nvim/site/pack/packer/start/nvim-lint",
-    url = "https://github.com/mfussenegger/nvim-lint"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

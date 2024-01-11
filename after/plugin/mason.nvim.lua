@@ -1,1 +1,5 @@
-require("mason").setup()
+--  "blade-formatter",
+--	"phpstan",
+--	"pint",
+--	"stylua",
+require("mason").setup({})
