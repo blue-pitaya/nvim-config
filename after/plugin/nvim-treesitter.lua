@@ -35,16 +35,8 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 
+-- Set html highlight for blade
+require("nvim-treesitter.parsers").filetype_to_parsername.blade = "html"
+
 -- Treat vue files as html for correct syntax highligh in single file components in vue.js
 vim.treesitter.language.register("html", "vue")
-
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
----@diagnostic disable-next-line: inject-field
-parser_config.blade = {
-	install_info = {
-		url = "https://github.com/EmranMR/tree-sitter-blade",
-		files = { "src/parser.c" },
-		branch = "v0.9.2",
-	},
-	filetype = "blade",
-}

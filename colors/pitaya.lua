@@ -62,7 +62,7 @@ h('Operator', { link = "Normal" })
 
 h('Keyword', { fg = p.red })
 h('Conditional', { link = "Keyword" })
-h('Include', { link = "Special" })
+h('Include', { link = "Keyword" })
 h('Repeat', { link = "Keyword" })
 
 h('Type', { fg = p.green })
