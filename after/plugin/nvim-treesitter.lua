@@ -37,6 +37,6 @@ require("nvim-treesitter.configs").setup({
 
 -- Set html highlight for blade
 require("nvim-treesitter.parsers").filetype_to_parsername.blade = "html"
-
--- Treat vue files as html for correct syntax highligh in single file components in vue.js
-vim.treesitter.language.register("html", "vue")
+--vim.treesitter.language.register("blade", { "html" })
+-- TODO: is it still needed?
+--vim.treesitter.language.register("html", "vue")
