@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/home/kodus/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
+  harpoon = {
+    loaded = true,
+    path = "/home/kodus/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/ThePrimeagen/harpoon"
+  },
   ["leap.nvim"] = {
     loaded = true,
     path = "/home/kodus/.local/share/nvim/site/pack/packer/start/leap.nvim",
