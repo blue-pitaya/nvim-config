@@ -242,3 +242,9 @@ require("lspconfig").intelephense.setup({
 -- GO
 -- sudo pacman -S gopls
 require("lspconfig").gopls.setup({})
+
+require("lspconfig").clojure_lsp.setup({})
+
+require("lspconfig").elixirls.setup({
+	cmd = { "elixir-ls" },
+})

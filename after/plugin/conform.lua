@@ -4,6 +4,8 @@ require("conform").setup({
 		php = { "pint" },
 		blade = { "blade-formatter" },
 		json = { "prettierd" },
+		typescript = { "prettierd" },
+		clojure = { "zprint" },
 		-- Conform will run multiple formatters sequentially
 		--python = { "isort", "black" },
 		-- Use a sub-list to run only the first available formatter
