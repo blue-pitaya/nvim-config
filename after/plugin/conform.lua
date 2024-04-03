@@ -6,6 +6,7 @@ require("conform").setup({
 		json = { "prettierd" },
 		typescript = { "prettierd" },
 		clojure = { "zprint" },
+		vue = { "prettierd" },
 		-- Conform will run multiple formatters sequentially
 		--python = { "isort", "black" },
 		-- Use a sub-list to run only the first available formatter

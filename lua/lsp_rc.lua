@@ -73,11 +73,28 @@ require("lspconfig").hls.setup({
 -- TYPESCRIPT
 -- require: sudo pacman -S typescript typescript-language-server
 require("lspconfig").tsserver.setup({
+	--cmd = "tsserver",
+	init_options = {
+		plugins = {
+			{
+				name = "@vue/typescript-plugin",
+				location = "/home/kodus/.local/lib/node_modules/@vue/typescript-plugin/lib",
+				languages = { "typescript", "vue" },
+			},
+		},
+	},
 	on_attach = function(client, _)
 		-- disable syntax highlight from tsserver (treesitter is preffered)
 		client.server_capabilities.semanticTokensProvider = nil
 	end,
+	filetypes = {
+		"javascript",
+		"typescript",
+		"vue",
+	},
 })
+
+require("lspconfig").volar.setup({})
 
 -- HTML & CSS
 -- require: npm install vscode-langservers-extracted --global
@@ -91,40 +108,42 @@ require("lspconfig").cssls.setup({
 	capabilities = vscodeLangSeverCaps,
 })
 
+
 -- VUE + TYPESCRIPT + most other JS FRAMEWORKS
 -- require: sudo pacman -S typescript
 -- require: sudo pacman -S typescript-language-server
 -- require: some volar install (i dont remember how i did it in past)
---require 'lspconfig'.volar.setup {
---  filetypes = { 'vue', 'javascriptreact', 'typescriptreact', 'typescript', 'javascript', 'json' },
---  init_options = {
---    typescript = {
---      -- pacman installs node_modules in this path
---      tsdk = '/usr/lib/node_modules/typescript/lib'
---    }
---  },
---  on_attach = function(client, _)
---    -- disable syntax highlight from tsserver (treesitter is preffered)
---    client.server_capabilities.semanticTokensProvider = nil
---  end,
---  handlers = {
---    -- more info in help: lsp-handler, lspconfig-configurations (/handlers)
---    ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
---      if result.diagnostics ~= nil then
---        local idx = 1
---        while idx <= #result.diagnostics do
---          -- Disable 'This may be converted to an async function.'
---          if result.diagnostics[idx].code == 80006 then
---            table.remove(result.diagnostics, idx)
---          else
---            idx = idx + 1
---          end
---        end
---      end
---      vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
---    end
---  }
---}
+
+--require("lspconfig").volar.setup({
+--	filetypes = { "vue", "javascriptreact", "typescriptreact", "typescript", "javascript", "json" },
+--	init_options = {
+--		typescript = {
+--			-- pacman installs node_modules in this path
+--			tsdk = ".local/lib/node_modules/@vue/typescript-plugin/lib",
+--		},
+--	},
+--	on_attach = function(client, _)
+--		-- disable syntax highlight from tsserver (treesitter is preffered)
+--		client.server_capabilities.semanticTokensProvider = nil
+--	end,
+--	handlers = {
+--		-- more info in help: lsp-handler, lspconfig-configurations (/handlers)
+--		["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+--			if result.diagnostics ~= nil then
+--				local idx = 1
+--				while idx <= #result.diagnostics do
+--					-- Disable 'This may be converted to an async function.'
+--					if result.diagnostics[idx].code == 80006 then
+--						table.remove(result.diagnostics, idx)
+--					else
+--						idx = idx + 1
+--					end
+--				end
+--			end
+--			vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
+--		end,
+--	},
+--})
 
 -- DOCKERFILE
 -- require: npm install -g dockerfile-language-server-nodejs

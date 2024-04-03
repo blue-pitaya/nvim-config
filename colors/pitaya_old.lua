@@ -25,21 +25,19 @@ local c243 = "#767676"
 local c249 = "#b2b2b2"
 local c254 = "#e4e4e4"
 
+local cDarkGreen = "#062d06"
+local cDarkRed = "#440606"
+local cDarkBlue = "#141c2e"
+
 local h = function(name, val)
 	vim.api.nvim_set_hl(0, name, val)
 end
 
 local color = {
-	--pink = "#ff45a6",
-	pink = "#ff64b5",
-	--blue = "#4ed4ff",
-	blue = "#6ab9c9",
+	pink = "#ff45a6",
+	blue = "#4ed4ff",
 	green = "#64e6ae",
-	yellow = "#d0e385",
-
-	dark_green = "#062d06",
-	dark_red = "#440606",
-	dark_blue = "#141c2e",
+	yellow = "#cae369",
 }
 
 local p = {
@@ -55,11 +53,9 @@ local p = {
 	iris2 = "#907aa9",
 	rotten_orange = "#cf9d81",
 	green = "#5aaa82",
-	subtle_green = "#61977c",
 	comment_color = c241,
 }
 
---Syntax
 h("@object.call", { link = "Normal" })
 
 h("Whitespace", { fg = "#400040" })
@@ -71,23 +67,23 @@ h("Number", { fg = p.foam })
 h("Float", { link = "Number" })
 h("Operator", { link = "Normal" })
 
-h("Keyword", { fg = color.pink })
+h("Keyword", { fg = p.red })
 h("Conditional", { link = "Keyword" })
 h("Include", { link = "Keyword" })
 h("Repeat", { link = "Keyword" })
-h("Statement", { link = "Keyword" })
 
-h("Type", { fg = color.blue })
+h("Type", { fg = p.green })
 h("Typedef", { link = "Type" })
 
 h("String", { fg = p.rotten_orange })
 
-h("Function", { fg = color.yellow })
+h("Function", { fg = p.gold2 })
 
 h("Comment", { fg = p.comment_color })
 
 h("Boolean", { fg = p.rose })
-h("Constant", { fg = p.iris })
+h("Constant", { fg = p.love })
+--h('Constant', {fg = c187, bg = cNone})
 h("Debug", { fg = p.rose })
 h("Define", { fg = p.iris })
 h("Delimiter", { fg = p.subtle })
@@ -99,17 +95,16 @@ h("Label", { fg = p.foam })
 h("Macro", { fg = p.iris })
 h("PreCondit", { fg = p.iris })
 h("PreProc", { fg = p.pine })
-
-h("Special", { fg = color.blue })
-h("SpecialChar", { fg = color.blue })
-h("SpecialComment", { fg = p.blue })
-
+h("Special", { fg = p.pine })
+h("SpecialChar", { fg = p.rose })
+h("SpecialComment", { fg = p.iris })
+h("Statement", { link = "Keyword" })
 h("StorageClass", { fg = p.foam })
 h("Structure", { fg = p.foam })
 h("Tag", { fg = p.subtle })
 h("Underlined", { underline = true })
 h("Todo", { link = "Comment" })
-h("Attribute", { fg = color.yellow })
+h("Attribute", { fg = p.green })
 --h('Property', { fg = p.foam })
 h("Property", { link = "Normal" })
 
@@ -156,11 +151,11 @@ h("TelescopeBorder", { fg = c242, bg = cNone })
 h("TelescopeSelection", { bg = c237 })
 
 -- Diff
-h("DiffChange", { fg = cNone, bg = color.dark_blue })
-h("DiffText", { fg = cNone, bg = color.dark_blue })
-h("DiffAdd", { fg = cNone, bg = color.dark_green })
-h("DiffDelete", { fg = cNone, bg = color.dark_red })
-h("DiffviewDiffDelete", { fg = color.dark_red, bg = color.dark_red })
+h("DiffChange", { fg = cNone, bg = cDarkBlue })
+h("DiffText", { fg = cNone, bg = cDarkBlue })
+h("DiffAdd", { fg = cNone, bg = cDarkGreen })
+h("DiffDelete", { fg = cNone, bg = cDarkRed })
+h("DiffviewDiffDelete", { fg = cDarkRed, bg = cDarkRed })
 h("DiffviewDiffDeleteDim", { fg = c235 })
 h("FoldColumn", { fg = c51, bg = cNone })
 
@@ -186,15 +181,12 @@ h("NvimTreeGitDirty", { fg = c44, bg = cNone })
 h("NvimTreeWindowPicker", { fg = c254, bg = c17, bold = true })
 
 -- Markdown
-h("@markup.heading.1", { fg = p.red })
-h("@markup.heading.2", { fg = "#f2a475" })
-h("@markup.heading.3", { fg = p.gold })
-h("@markup.heading.4", { fg = c151 })
-h("@markup.heading.5", { fg = p.red })
-h("@markup.heading.6", { fg = p.red })
-
-h("@markup.list.checked", { fg = p.green })
-h("@markup.list.unchecked", { fg = p.iris })
+h("markdownH1", { fg = p.red })
+h("markdownH2", { fg = "#f2a475" })
+h("markdownH3", { fg = p.gold })
+h("markdownH4", { fg = c151 })
+h("markdownH5", { fg = p.red })
+h("markdownH6", { fg = p.red })
 
 -- Diagnostics
 h("DiagnosticUnderlineError", { sp = "#af0000", underline = true })
@@ -284,8 +276,3 @@ h("@tag", { link = "Tag" })
 h("@tagDelimiter", { link = "TagDeliWarn" })
 h("@type.qualifier", { link = "Keyword" })
 h("@method.call", { link = "Function" })
-
-h("@string.special.symbol", { fg = p.iris })
-h("@comment.documentation", { fg = p.subtle_green })
-
-h("@tag.attribute", { fg = color.yellow })
