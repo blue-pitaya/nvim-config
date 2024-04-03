@@ -1,8 +1,13 @@
+local h = function(name, val)
+	vim.api.nvim_set_hl(0, name, val)
+end
+
 vim.opt.background = "dark"
 
 local cNone = "NONE"
 local c17 = "#00005f"
 local c24 = "#005f87"
+local c38 = "#00afd7"
 local c44 = "#00d7d7"
 local c51 = "#00ffff"
 local c58 = "#5f5f00"
@@ -25,10 +30,6 @@ local c243 = "#767676"
 local c249 = "#b2b2b2"
 local c254 = "#e4e4e4"
 
-local h = function(name, val)
-	vim.api.nvim_set_hl(0, name, val)
-end
-
 local color = {
 	--pink = "#ff45a6",
 	pink = "#ff64b5",
@@ -37,25 +38,22 @@ local color = {
 	green = "#64e6ae",
 	yellow = "#d0e385",
 
+	orange = "#f2a475",
+
 	dark_green = "#062d06",
 	dark_red = "#440606",
 	dark_blue = "#141c2e",
-}
 
-local p = {
 	red = "#f27775",
 	subtle = "#908caa",
 	love = "#eb6f92",
-	gold = "#edd392",
-	gold2 = "#f3d292",
 	rose = "#ea9a97",
-	pine = "#00afd7", --c38
 	foam = "#9ccfd8",
 	iris = "#c4a7e7",
-	iris2 = "#907aa9",
-	rotten_orange = "#cf9d81",
-	green = "#5aaa82",
+	--iris2 = "#907aa9",
 	subtle_green = "#61977c",
+
+	string_color = "#cf9d81",
 	comment_color = c241,
 }
 
@@ -67,7 +65,7 @@ h("Whitespace", { fg = "#400040" })
 h("Breakpoint", { fg = c164 })
 
 h("Normal", { fg = "#e7e7e7" })
-h("Number", { fg = p.foam })
+h("Number", { fg = color.foam })
 h("Float", { link = "Number" })
 h("Operator", { link = "Normal" })
 
@@ -80,33 +78,33 @@ h("Statement", { link = "Keyword" })
 h("Type", { fg = color.blue })
 h("Typedef", { link = "Type" })
 
-h("String", { fg = p.rotten_orange })
+h("String", { fg = color.string_color })
 
 h("Function", { fg = color.yellow })
 
-h("Comment", { fg = p.comment_color })
+h("Comment", { fg = color.comment_color })
 
-h("Boolean", { fg = p.rose })
-h("Constant", { fg = p.iris })
-h("Debug", { fg = p.rose })
-h("Define", { fg = p.iris })
-h("Delimiter", { fg = p.subtle })
-h("Error", { fg = p.love })
-h("Exception", { fg = p.pine })
+h("Boolean", { fg = color.rose })
+h("Constant", { fg = color.iris })
+h("Debug", { fg = color.rose })
+h("Define", { fg = color.iris })
+h("Delimiter", { fg = color.subtle })
+h("Error", { fg = color.love })
+h("Exception", { fg = c38 })
 --h('Float', {fg = c151, bg = cNone})
-h("Identifier", { fg = p.rose })
-h("Label", { fg = p.foam })
-h("Macro", { fg = p.iris })
-h("PreCondit", { fg = p.iris })
-h("PreProc", { fg = p.pine })
+h("Identifier", { fg = color.rose })
+h("Label", { fg = color.foam })
+h("Macro", { fg = color.iris })
+h("PreCondit", { fg = color.iris })
+h("PreProc", { fg = c38 })
 
 h("Special", { fg = color.blue })
 h("SpecialChar", { fg = color.blue })
-h("SpecialComment", { fg = p.blue })
+h("SpecialComment", { fg = color.blue })
 
-h("StorageClass", { fg = p.foam })
-h("Structure", { fg = p.foam })
-h("Tag", { fg = p.subtle })
+h("StorageClass", { fg = color.foam })
+h("Structure", { fg = color.foam })
+h("Tag", { fg = color.subtle })
 h("Underlined", { underline = true })
 h("Todo", { link = "Comment" })
 h("Attribute", { fg = color.yellow })
@@ -186,15 +184,23 @@ h("NvimTreeGitDirty", { fg = c44, bg = cNone })
 h("NvimTreeWindowPicker", { fg = c254, bg = c17, bold = true })
 
 -- Markdown
-h("@markup.heading.1", { fg = p.red })
-h("@markup.heading.2", { fg = "#f2a475" })
-h("@markup.heading.3", { fg = p.gold })
-h("@markup.heading.4", { fg = c151 })
-h("@markup.heading.5", { fg = p.red })
-h("@markup.heading.6", { fg = p.red })
+h("@markup.heading.1", { fg = color.red })
+h("@markup.heading.2", { fg = color.orange })
+h("@markup.heading.3", { fg = color.yellow })
+h("@markup.heading.4", { fg = color.iris })
+h("@markup.heading.5", { fg = color.subtle })
+h("@markup.heading.6", { fg = color.subtle })
+h("@markup.list", { fg = color.pink })
+h("@markup.list.checked", { fg = color.subtle_green })
+h("@markup.list.unchecked", { fg = color.rose })
+h("@markup.link", { fg = color.blue })
 
-h("@markup.list.checked", { fg = p.green })
-h("@markup.list.unchecked", { fg = p.iris })
+-- HTML
+h("@tag.attribute", { fg = color.yellow })
+
+-- JSON
+h("jsonKeyword", { link = "Keyword" })
+h("jsonBoolean", { link = "Boolean" })
 
 -- Diagnostics
 h("DiagnosticUnderlineError", { sp = "#af0000", underline = true })
@@ -204,12 +210,11 @@ h("DiagnosticUnderlineWarn", { sp = "#707000", underline = true })
 h("NvimTreeGitNew", { link = "NvimTreeGitDirty" })
 h("NvimTreeGitStaged", { link = "NvimTreeGitDirty" })
 h("htmlTagName", { link = "Keyword" })
-
--- generic highlight groups
+h("@string.special.symbol", { fg = color.iris })
+h("@comment.documentation", { fg = color.subtle_green })
 h("Title", { link = "Normal" })
 h("SpecialComment", { link = "Special" })
 h("CursorColumn", { link = "CursorLine" })
---seth("String", {link = "Character"})
 
 -- vim highlight groups
 h("vimEnvvar", { link = "Constant" })
@@ -220,10 +225,6 @@ h("vimIsCommand", { link = "Keyword" })
 h("vimNotFunc", { link = "Keyword" })
 h("vimUserFunc", { link = "Function" })
 h("vimCommentTitle", { link = "Special" })
-
--- json highlight groups
-h("jsonKeyword", { link = "Keyword" })
-h("jsonBoolean", { link = "Boolean" })
 
 -- nvim-cmp
 h("CmpItemKind", { link = "Type" })
@@ -284,8 +285,3 @@ h("@tag", { link = "Tag" })
 h("@tagDelimiter", { link = "TagDeliWarn" })
 h("@type.qualifier", { link = "Keyword" })
 h("@method.call", { link = "Function" })
-
-h("@string.special.symbol", { fg = p.iris })
-h("@comment.documentation", { fg = p.subtle_green })
-
-h("@tag.attribute", { fg = color.yellow })
