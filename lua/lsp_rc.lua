@@ -91,6 +91,8 @@ require("lspconfig").tsserver.setup({
 		"javascript",
 		"typescript",
 		"vue",
+		"typescriptreact",
+		"javascripttreact",
 	},
 })
 
@@ -107,7 +109,6 @@ require("lspconfig").html.setup({
 require("lspconfig").cssls.setup({
 	capabilities = vscodeLangSeverCaps,
 })
-
 
 -- VUE + TYPESCRIPT + most other JS FRAMEWORKS
 -- require: sudo pacman -S typescript
@@ -198,17 +199,6 @@ require("lspconfig").rust_analyzer.setup({
 require("lspconfig").bashls.setup({})
 
 -- PYTHON
-require("lspconfig").jedi_language_server.setup({
-	init_options = {
-		markupKindPreferred = "markdown",
-		diagnostics = {
-			enable = true,
-			didOpen = true,
-			didChange = true,
-			didSave = true,
-		},
-	},
-})
 require("lspconfig").ruff_lsp.setup({
 	init_options = {
 		settings = {
@@ -216,6 +206,29 @@ require("lspconfig").ruff_lsp.setup({
 			args = {},
 		},
 	},
+})
+require("lspconfig").pyright.setup({
+	settings = {
+		pyright = {
+			-- Using Ruff's import organizer
+			disableOrganizeImports = true,
+		},
+		python = {
+			analysis = {
+				-- Ignore all files for analysis to exclusively use Ruff for linting
+				ignore = { "*" },
+			},
+		},
+	},
+})
+
+require("lspconfig").ruff_lsp.setup({
+	on_attach = function(client, bufnr)
+		if client.name == "ruff_lsp" then
+			-- Disable hover in favor of Pyright
+			client.server_capabilities.hoverProvider = false
+		end
+	end,
 })
 
 -- PHP
@@ -266,4 +279,12 @@ require("lspconfig").clojure_lsp.setup({})
 
 require("lspconfig").elixirls.setup({
 	cmd = { "elixir-ls" },
+})
+
+require("lspconfig").tailwindcss.setup({
+	--servers = {
+	--	tailwindcss = {
+	--		filetypes_include = { "eruby" },
+	--	},
+	--},
 })

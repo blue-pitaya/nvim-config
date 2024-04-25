@@ -97,3 +97,6 @@ vim.keymap.set("n", "<F2>", ":lua require'dap'.repl.toggle()<CR>")
 --vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").open()<CR>', {
 --  desc = "Open Spectre"
 --})
+
+-- Past in command mode
+vim.api.nvim_set_keymap('c', '<C-v>', '<C-r>"', {noremap = true})

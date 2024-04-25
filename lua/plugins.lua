@@ -36,7 +36,6 @@ return require("packer").startup(function(use)
 	-- LSP & programming
 	use("neovim/nvim-lspconfig") -- Huge repo of lsp configs
 	use("scalameta/nvim-metals") -- Scala plugin (syntax, lsp, code actions and more)
-	use("jose-elias-alvarez/null-ls.nvim") -- LSP injections from not so LSP lang tools
 	use("mfussenegger/nvim-jdtls") -- Java plugin
 
 	-- Autocompletion

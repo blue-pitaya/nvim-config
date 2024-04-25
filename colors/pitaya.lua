@@ -1,3 +1,5 @@
+-- May look at this: https://github.com/tjdevries/colorbuddy.nvim
+
 local h = function(name, val)
 	vim.api.nvim_set_hl(0, name, val)
 end
@@ -46,6 +48,7 @@ local color = {
 
 	red = "#f27775",
 	subtle = "#908caa",
+	subtle_darker = "#444351",
 	love = "#eb6f92",
 	rose = "#ea9a97",
 	foam = "#9ccfd8",
@@ -194,6 +197,7 @@ h("@markup.list", { fg = color.pink })
 h("@markup.list.checked", { fg = color.subtle_green })
 h("@markup.list.unchecked", { fg = color.rose })
 h("@markup.link", { fg = color.blue })
+h("@string.escape", { bg = color.subtle_darker })
 
 -- HTML
 h("@tag.attribute", { fg = color.yellow })
