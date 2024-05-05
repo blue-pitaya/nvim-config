@@ -49,7 +49,11 @@ vim.keymap.set("n", "<Space>j", ":Telescope buffers initial_mode=normal<cr>")
 --vim.keymap.set("n", "<Space>k", ":Telescope keymaps<cr>")
 vim.keymap.set("n", "<Space>n", ":Telescope lsp_dynamic_workspace_symbols<cr>")
 vim.keymap.set("n", "<Leader><Leader>", function()
-	require("telescope.builtin").diagnostics({ line_width = "full", layout_strategy = "vertical", initial_mode = "normal" })
+	require("telescope.builtin").diagnostics({
+		line_width = "full",
+		layout_strategy = "vertical",
+		initial_mode = "normal",
+	})
 end)
 --vim.keymap.set("n", "<Space>h", ":Telescope help_tags<cr>")
 --vim.keymap.set("n", "<Space>p", ":Telescope registers initial_mode=normal<cr>")
