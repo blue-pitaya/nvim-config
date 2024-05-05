@@ -25,8 +25,6 @@ vim.opt.smartcase = true
 
 -- Colorscheme and plugins
 vim.cmd('colorscheme pitaya')
---require('plugins')
-
 
 -- Custom globals
 vim.g.cmp_is_enabled = true
@@ -55,6 +53,7 @@ require('lsp_rc')
 require('plugins.telescope_rc')
 require('plugins.treesitter_rc')
 require('plugins.neo-tree_rc')
+require('plugins.lualine_rc')
 require('plugins.conform_rc')
 require('plugins.diffview_rc')
 --require("plugins.leap_rc")
