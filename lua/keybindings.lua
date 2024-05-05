@@ -19,7 +19,7 @@ vim.keymap.set("n", "N", "Nzz")
 
 vim.keymap.set("n", "<Leader>c", ":ToggleCompletion<CR>")
 
-vim.cmd([[autocmd FileType qf nnoremap <buffer> o :.cc<CR>]])          -- open file in qf window
+vim.cmd([[autocmd FileType qf nnoremap <buffer> o :.cc<CR>]]) -- open file in qf window
 
 -- Window bindings
 --noremap <silent> {Previous-Mapping} :<C-U>TmuxNavigatePrevious<cr>
@@ -41,35 +41,18 @@ end)
 vim.keymap.set("n", "J", function()
   vim.lsp.buf.code_action()
 end)
-vim.keymap.set("n", "K", function()
-  vim.lsp.buf.hover()
-end)
-vim.keymap.set("n", "L", function()
-  vim.lsp.codelens.run()
-end)
-vim.keymap.set("n", "gi", function()
-  vim.lsp.buf.implementation()
-end)
-vim.keymap.set("n", "gr", function()
-  require("telescope.builtin").lsp_references({ show_line = false, initial_mode = "normal" })
-end)
-vim.keymap.set("n", "<Leader>r", function()
-  vim.lsp.buf.rename()
-end)
-vim.keymap.set("n", "<Leader>f", function()
-  require("conform").format({ lsp_fallback = true })
-end)
+vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
+vim.keymap.set("n", "L", function() vim.lsp.codelens.run() end)
+vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end)
+vim.keymap.set("n", "gr",
+  function() require("telescope.builtin").lsp_references({ show_line = false, initial_mode = "normal" }) end)
+vim.keymap.set("n", "<Leader>r", function() vim.lsp.buf.rename() end)
+vim.keymap.set("n", "<Leader>f", function() require("conform").format({ lsp_fallback = true }) end)
 --vim.keymap.set("n", "<Leader>f", function() vim.cmd("Format") end)
 
-vim.keymap.set("n", "gk", function()
-  vim.lsp.buf.signature_help()
-end)
-vim.keymap.set("i", "<C-K>", function()
-  vim.lsp.buf.signature_help()
-end)
-vim.keymap.set("i", "<C-J>", function()
-  vim.lsp.buf.code_action()
-end)
+vim.keymap.set("n", "gk", function() vim.lsp.buf.signature_help() end)
+vim.keymap.set("i", "<C-K>", function() vim.lsp.buf.signature_help() end)
+vim.keymap.set("i", "<C-J>", function() vim.lsp.buf.code_action() end)
 
 vim.keymap.set("n", "<leader>m", ":MetalsOrganizeImports<CR>")
 
