@@ -1,33 +1,47 @@
+--    ◍ black
+--    ◍ blade-formatter
+--    ◍ clojure-lsp
+--    ◍ elixir-ls
+--    ◍ intelephense
+--    ◍ phpstan
+--    ◍ pint
+--    ◍ prettierd
+--    ◍ stylua
+--    ◍ vue-language-server
+--    ◍ zprint
+--    ◍ zprint-clj
+--
+--
 -- Toggle virtual text
 vim.api.nvim_create_user_command("ToggleVirtError", function()
-	vim.g.diagnostics_virtual_text_enabled = not vim.g.diagnostics_virtual_text_enabled
+  vim.g.diagnostics_virtual_text_enabled = not vim.g.diagnostics_virtual_text_enabled
 
-	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-		virtual_text = vim.g.diagnostics_virtual_text_enabled,
-		update_in_insert = false,
-		underline = true,
-	})
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = vim.g.diagnostics_virtual_text_enabled,
+    update_in_insert = false,
+    underline = true,
+  })
 end, {})
 
 -- Set diagnostic signs
 -- Its set no text, becouse of signcolumn text jumping
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 vim.fn.sign_define("DapBreakpoint", { text = "B", texthl = "Breakpoint" })
 
 -- Custom border
 local border = {
-	{ "┏", "FloatBorder" },
-	{ "━", "FloatBorder" },
-	{ "┓", "FloatBorder" },
-	{ "┃", "FloatBorder" },
-	{ "┛", "FloatBorder" },
-	{ "━", "FloatBorder" },
-	{ "┗", "FloatBorder" },
-	{ "┃", "FloatBorder" },
+  { "┏", "FloatBorder" },
+  { "━", "FloatBorder" },
+  { "┓", "FloatBorder" },
+  { "┃", "FloatBorder" },
+  { "┛", "FloatBorder" },
+  { "━", "FloatBorder" },
+  { "┗", "FloatBorder" },
+  { "┃", "FloatBorder" },
 }
 vim.lsp.with(vim.lsp.handlers.hover, { border = border })
 vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
@@ -36,9 +50,9 @@ vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 -- To instead override globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-	opts = opts or {}
-	opts.border = opts.border or border
-	return orig_util_open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
 --
@@ -67,33 +81,33 @@ require("lspconfig").metals.setup({})
 
 -- HASKELL
 require("lspconfig").hls.setup({
-	filetypes = { "haskell", "lhaskell", "cabal" },
+  filetypes = { "haskell", "lhaskell", "cabal" },
 })
 
 -- TYPESCRIPT
 -- require: sudo pacman -S typescript typescript-language-server
 require("lspconfig").tsserver.setup({
-	--cmd = "tsserver",
-	init_options = {
-		plugins = {
-			{
-				name = "@vue/typescript-plugin",
-				location = "/home/kodus/.local/lib/node_modules/@vue/typescript-plugin/lib",
-				languages = { "typescript", "vue" },
-			},
-		},
-	},
-	on_attach = function(client, _)
-		-- disable syntax highlight from tsserver (treesitter is preffered)
-		client.server_capabilities.semanticTokensProvider = nil
-	end,
-	filetypes = {
-		"javascript",
-		"typescript",
-		"vue",
-		"typescriptreact",
-		"javascripttreact",
-	},
+  --cmd = "tsserver",
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = "/home/kodus/.local/lib/node_modules/@vue/typescript-plugin/lib",
+        languages = { "typescript", "vue" },
+      },
+    },
+  },
+  on_attach = function(client, _)
+    -- disable syntax highlight from tsserver (treesitter is preffered)
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
+  filetypes = {
+    "javascript",
+    "typescript",
+    "vue",
+    "typescriptreact",
+    "javascripttreact",
+  },
 })
 
 require("lspconfig").volar.setup({})
@@ -104,10 +118,10 @@ require("lspconfig").volar.setup({})
 local vscodeLangSeverCaps = vim.lsp.protocol.make_client_capabilities()
 vscodeLangSeverCaps.textDocument.completion.completionItem.snippetSupport = true
 require("lspconfig").html.setup({
-	capabilities = vscodeLangSeverCaps,
+  capabilities = vscodeLangSeverCaps,
 })
 require("lspconfig").cssls.setup({
-	capabilities = vscodeLangSeverCaps,
+  capabilities = vscodeLangSeverCaps,
 })
 
 -- VUE + TYPESCRIPT + most other JS FRAMEWORKS
@@ -153,45 +167,45 @@ require("lspconfig").dockerls.setup({})
 -- LUA
 -- require lua-language-server, on arch: sudo pacman -S lua-language-server
 require("lspconfig").lua_ls.setup({
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = "LuaJIT",
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { "vim", "vim.api" },
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
-				checkThirdParty = false,
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { "vim", "vim.api" },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
 })
 
 -- RUST
 -- sudo pacman -S rust-analyzer
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 require("lspconfig").rust_analyzer.setup({
-	--on_attach = function(client, bufnr)
-	--  if client.supports_method("textDocument/formatting") then
-	--    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-	--    vim.api.nvim_create_autocmd("BufWritePre", {
-	--      group = augroup,
-	--      buffer = bufnr,
-	--      callback = function()
-	--        vim.lsp.buf.format({ bufnr = bufnr })
-	--      end,
-	--    })
-	--  end
-	--end,
+  --on_attach = function(client, bufnr)
+  --  if client.supports_method("textDocument/formatting") then
+  --    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  --    vim.api.nvim_create_autocmd("BufWritePre", {
+  --      group = augroup,
+  --      buffer = bufnr,
+  --      callback = function()
+  --        vim.lsp.buf.format({ bufnr = bufnr })
+  --      end,
+  --    })
+  --  end
+  --end,
 })
 
 -- BASH
@@ -199,67 +213,65 @@ require("lspconfig").rust_analyzer.setup({
 require("lspconfig").bashls.setup({})
 
 -- PYTHON
-require("lspconfig").ruff_lsp.setup({
-	init_options = {
-		settings = {
-			-- Any extra CLI arguments for `ruff` go here.
-			args = {},
-		},
-	},
-})
 require("lspconfig").pyright.setup({
-	settings = {
-		pyright = {
-			-- Using Ruff's import organizer
-			disableOrganizeImports = true,
-		},
-		python = {
-			analysis = {
-				-- Ignore all files for analysis to exclusively use Ruff for linting
-				ignore = { "*" },
-			},
-		},
-	},
+  settings = {
+    pyright = {
+      -- Using Ruff's import organizer
+      disableOrganizeImports = true,
+    },
+    python = {
+      analysis = {
+        -- Ignore all files for analysis to exclusively use Ruff for linting
+        ignore = { "*" },
+      },
+    },
+  },
 })
 
 require("lspconfig").ruff_lsp.setup({
-	on_attach = function(client, bufnr)
-		if client.name == "ruff_lsp" then
-			-- Disable hover in favor of Pyright
-			client.server_capabilities.hoverProvider = false
-		end
-	end,
+  on_attach = function(client, bufnr)
+    if client.name == "ruff_lsp" then
+      -- Disable hover in favor of Pyright
+      client.server_capabilities.hoverProvider = false
+    end
+  end,
+  init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      args = {},
+    },
+  },
 })
 
 -- PHP
 -- Config ref: https://github.com/yaegassy/coc-intelephense
 require("lspconfig").intelephense.setup({
-	settings = {
-		intelephense = {
-			files = {
-				exclude = {
-					"**/.git/**",
-					"**/.svn/**",
-					"**/.hg/**",
-					"**/CVS/**",
-					"**/.DS_Store/**",
-					"**/node_modules/**",
-					"**/bower_components/**",
-					"**/vendor/**/{Tests,tests}/**",
-					"**/.history/**",
-					"**/vendor/**/vendor/**",
-					"**/*.blade.php",
-				},
-			},
-			diagnostics = {
-				enable = true,
-				undefinedMethods = false,
-			},
-			telemetry = {
-				enabled = false,
-			},
-		},
-	},
+  settings = {
+    intelephense = {
+      files = {
+        exclude = {
+          "**/.git/**",
+          "**/.svn/**",
+          "**/.hg/**",
+          "**/CVS/**",
+          "**/.DS_Store/**",
+          "**/node_modules/**",
+          "**/bower_components/**",
+          "**/vendor/**/{Tests,tests}/**",
+          "**/.history/**",
+          "**/vendor/**/vendor/**",
+          "**/*.blade.php",
+        },
+      },
+      diagnostics = {
+        enable = true,
+        undefinedMethods = false,
+      },
+      telemetry = {
+        enabled = false,
+      },
+    },
+  },
 })
 --require("lspconfig").phpactor.setup({})
 
@@ -275,16 +287,16 @@ require("lspconfig").intelephense.setup({
 -- sudo pacman -S gopls
 require("lspconfig").gopls.setup({})
 
-require("lspconfig").clojure_lsp.setup({})
+--require("lspconfig").clojure_lsp.setup({})
 
 require("lspconfig").elixirls.setup({
-	cmd = { "elixir-ls" },
+  cmd = { "elixir-ls" },
 })
 
 require("lspconfig").tailwindcss.setup({
-	--servers = {
-	--	tailwindcss = {
-	--		filetypes_include = { "eruby" },
-	--	},
-	--},
+  --servers = {
+  --	tailwindcss = {
+  --		filetypes_include = { "eruby" },
+  --	},
+  --},
 })
