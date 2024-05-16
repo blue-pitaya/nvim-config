@@ -1,6 +1,5 @@
 --    ◍ black
 --    ◍ blade-formatter
---    ◍ clojure-lsp
 --    ◍ elixir-ls
 --    ◍ intelephense
 --    ◍ phpstan
