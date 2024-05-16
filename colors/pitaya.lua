@@ -6,7 +6,6 @@ end
 
 vim.opt.background = "dark"
 
-local cNone = "NONE"
 local c17 = "#00005f"
 local c24 = "#005f87"
 local c38 = "#00afd7"
@@ -94,7 +93,7 @@ h("Define", { fg = color.iris })
 h("Delimiter", { fg = color.subtle })
 h("Error", { fg = color.love })
 h("Exception", { fg = c38 })
---h('Float', {fg = c151, bg = cNone})
+--h('Float', {fg = c151, })
 h("Identifier", { fg = color.rose })
 h("Label", { fg = color.foam })
 h("Macro", { fg = color.iris })
@@ -119,54 +118,54 @@ h("StatusLineNC", { fg = c249, bg = c234 })
 h("VisualNOS", { fg = c249 })
 h("PmenuSbar", { fg = c238 })
 h("Cursor", { reverse = true })
-h("Visual", { fg = cNone, bg = c24 })
+h("Visual", { bg = c24 })
 h("WildMenu", { fg = c249, bg = c234 })
-h("CursorLine", { fg = cNone, bg = c236 })
-h("CursorLineNr", { fg = c254, bg = cNone })
-h("TabLineFill", { fg = cNone, bg = c234 })
+h("CursorLine", { bg = c236 })
+h("CursorLineNr", { fg = c254 })
+h("TabLineFill", { bg = c234 })
 h("PmenuSel", { fg = c249, bg = c24 })
-h("LineNr", { fg = c243, bg = cNone })
-h("Search", { fg = cNone, bg = "#31445c" })
-h("Directory", { fg = c75, bg = cNone })
-h("Identifier", { fg = c254, bg = cNone })
+h("LineNr", { fg = c243 })
+h("Search", { bg = "#31445c" })
+h("Directory", { fg = c75 })
+h("Identifier", { fg = c254 })
 h("TabLine", { fg = c254, bg = c234 })
-h("PmenuThumb", { fg = cNone, bg = c24 })
+h("PmenuThumb", { bg = c24 })
 h("TabLineSel", { fg = c254, bg = c24 })
 h("VertSplit", { fg = c237, bg = c237 })
 h("Error", { fg = c160 })
 h("Pmenu", { fg = c249, bg = c234 })
-h("NonText", { fg = c240, bg = cNone })
-h("SignColumn", { fg = cNone, bg = cNone })
+h("NonText", { fg = c240 })
+h("SignColumn", {})
 h("StatusLine", { fg = c249, bg = c234 })
 h("StatusLineNC", { fg = c249, bg = c237 })
-h("SpecialKey", { fg = c249, bg = cNone })
-h("IncSearch", { fg = cNone, bg = c58 })
+h("SpecialKey", { fg = c249 })
+h("IncSearch", { bg = c58 })
 h("Folded", { fg = c239, bg = c234 })
-h("ColorColumn", { fg = cNone, bg = c234 })
-h("ErrorMsg", { fg = cNone, bg = c234 })
-h("WarningMsg", { fg = cNone, bg = c234 })
-h("LspCodeLens", { fg = c241, bg = cNone })
+h("ColorColumn", { bg = c234 })
+h("ErrorMsg", { bg = c234 })
+h("WarningMsg", { bg = c234 })
+h("LspCodeLens", { fg = c241 })
 h("Constructor", { link = "Function" })
 
 -- Border
-h("NormalFloat", { fg = cNone, bg = cNone })
-h("FloatBorder", { fg = c241, bg = cNone })
+h("NormalFloat", {})
+h("FloatBorder", { fg = c241 })
 
 -- Telescope
-h("TelescopeBorder", { fg = c242, bg = cNone })
+h("TelescopeBorder", { fg = c242 })
 h("TelescopeSelection", { bg = c237 })
 
 -- Diff
-h("DiffChange", { fg = cNone, bg = color.dark_blue })
-h("DiffText", { fg = cNone, bg = color.dark_blue })
-h("DiffAdd", { fg = cNone, bg = color.dark_green })
-h("DiffDelete", { fg = cNone, bg = color.dark_red })
+h("DiffChange", { bg = color.dark_blue })
+h("DiffText", { bg = color.dark_blue })
+h("DiffAdd", { bg = color.dark_green })
+h("DiffDelete", { bg = color.dark_red })
 h("DiffviewDiffDelete", { fg = color.dark_red, bg = color.dark_red })
 h("DiffviewDiffDeleteDim", { fg = c235 })
-h("FoldColumn", { fg = c51, bg = cNone })
+h("FoldColumn", { fg = c51 })
 
 -- Parens
-h("MatchParen", { fg = cNone, bg = c58 })
+h("MatchParen", { bg = c58 })
 
 -- Scala
 -- h('scalaKeywordModifier', { link = 'Keyword' })
@@ -182,8 +181,8 @@ h("MatchParen", { fg = cNone, bg = c58 })
 -- h('pythonOperator', { link = "Keyword" })
 
 -- NvimTree
-h("NvimTreeFolderIcon", { fg = c186, bg = cNone })
-h("NvimTreeGitDirty", { fg = c44, bg = cNone })
+h("NvimTreeFolderIcon", { fg = c186 })
+h("NvimTreeGitDirty", { fg = c44 })
 h("NvimTreeWindowPicker", { fg = c254, bg = c17, bold = true })
 
 -- Markdown
