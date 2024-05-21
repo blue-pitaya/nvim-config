@@ -2,11 +2,11 @@ local cmp = require("cmp")
 
 cmp.setup({
   enabled = vim.g.cmp_is_enabled,
-  snippet = {
-    expand = function(args)
-      require('snippy').expand_snippet(args.body)
-    end,
-  },
+  --snippet = {
+  --  expand = function(args)
+  --    require('snippy').expand_snippet(args.body)
+  --  end,
+  --},
   window = {
     completion = {
       border = 'rounded',
@@ -29,7 +29,6 @@ cmp.setup({
     ['<C-l>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = {
-    { name = "snippy" },
     { name = "nvim_lsp" },
   },
   experimental = {

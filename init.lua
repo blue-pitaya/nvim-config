@@ -17,14 +17,14 @@ vim.opt.tabstop = 2
 -- vim.opt.listchars = "tab:⦁."
 
 -- Custom fillchars for prettier diffview
-vim.opt.fillchars:append { diff = "╱" }
+vim.opt.fillchars:append({ diff = "╱" })
 
 -- Case insensitive search unless capital char exists
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Colorscheme and plugins
-vim.cmd('colorscheme pitaya')
+vim.cmd("colorscheme pitaya")
 
 -- Custom globals
 vim.g.cmp_is_enabled = true
@@ -32,31 +32,30 @@ vim.g.diagnostics_virtual_text_enabled = true
 
 -- Plugins rc
 -- require('autocomplete_rc')
-require('keybindings')
--- require('snippy_rc')
+require("keybindings")
 
 -- Startup
 vim.cmd([[autocmd VimEnter * :clearjumps]])
 
 -- PHP XD
-vim.cmd([[au BufRead,BufNewFile *.blade.php setfiletype blade]]);
+vim.cmd([[au BufRead,BufNewFile *.blade.php setfiletype blade]])
 
 -- Plugins
-require('nvim-autopairs').setup({})
-require('window-picker').setup({
-  selection_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-  other_win_hl_color = '#00005f',
+require("nvim-autopairs").setup({})
+require("window-picker").setup({
+	selection_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+	other_win_hl_color = "#00005f",
 })
-require('colorizer').setup()
+require("colorizer").setup()
 
-require('lsp_rc')
-require('plugins.telescope_rc')
-require('plugins.treesitter_rc')
-require('plugins.neo-tree_rc')
-require('plugins.lualine_rc')
-require('plugins.conform_rc')
-require('plugins.diffview_rc')
-require('plugins.nvim-cmp_rc')
+require("lsp_rc")
+require("plugins.telescope_rc")
+require("plugins.treesitter_rc")
+require("plugins.neo-tree_rc")
+require("plugins.lualine_rc")
+require("plugins.conform_rc")
+require("plugins.diffview_rc")
+require("plugins.nvim-cmp_rc")
 --require("plugins.leap_rc")
 -- TODO: manually install shit later :)
 require("mason").setup({})
