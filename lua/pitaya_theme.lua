@@ -67,13 +67,13 @@ local c = {
 	red = "#f27775",
 	pink = "#ff64b5",
 	blue = "#7fbec9",
-    fr = "#60c9c3",
-    froggy3 = "#64dacb";
-    froggy2 = "#4cdac8";
-    froggy = "#4dc0b2";
+	fr = "#60c9c3",
+	froggy3 = "#64dacb",
+	froggy2 = "#4cdac8",
+	froggy = "#4dc0b2",
 	green = "#64e6ae",
 	yellow = "#d0e385",
-    y = "#c6db73";
+	y = "#c6db73",
 	orange = "#f2a475",
 	dead_orange = "#cf9d81",
 
@@ -139,7 +139,6 @@ local definitions = {
 	{ "PreCondit", { fg = c.iris } },
 	{ "PreProc", { fg = sc.c38 } },
 
-
 	{ "StorageClass", { fg = c.blue } },
 	{ "Structure", { fg = c.blue } },
 	{ "Tag", { fg = c.subtle } },
@@ -148,8 +147,11 @@ local definitions = {
 	{ "Attribute", { fg = c.yellow } },
 	{ "Property", { link = "Normal" } },
 
+	-- StatusLine
+	{ "StatusLine", { fg = sc.c249, bg = sc.c234 } },
+	{ "StatusLineNC", { fg = sc.c249, bg = sc.c237 } },
+
 	-- General
-	{ "StatusLineNC", { fg = sc.c249, bg = sc.c234 } },
 	{ "VisualNOS", { fg = sc.c249 } },
 	{ "PmenuSbar", { fg = sc.c238 } },
 	{ "Cursor", { reverse = true } },
@@ -170,8 +172,6 @@ local definitions = {
 	{ "Pmenu", { fg = sc.c249, bg = sc.c234 } },
 	{ "NonText", { fg = sc.c240 } },
 	{ "SignColumn", {} },
-	{ "StatusLine", { fg = sc.c249, bg = sc.c234 } },
-	{ "StatusLineNC", { fg = sc.c249, bg = sc.c237 } },
 	{ "SpecialKey", { fg = sc.c249 } },
 	{ "IncSearch", { bg = sc.c58 } },
 	{ "Folded", { fg = sc.c239, bg = sc.c234 } },
