@@ -9,8 +9,8 @@ vim.opt.wrap = true
 
 -- Change tab to spaces
 vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 
 -- Show tabs
 -- vim.opt.list = true
@@ -31,7 +31,6 @@ vim.g.cmp_is_enabled = true
 vim.g.diagnostics_virtual_text_enabled = true
 
 -- Plugins rc
--- require('autocomplete_rc')
 require("keybindings")
 
 -- Startup
@@ -39,6 +38,7 @@ vim.cmd([[autocmd VimEnter * :clearjumps]])
 
 -- PHP XD
 vim.cmd([[au BufRead,BufNewFile *.blade.php setfiletype blade]])
+vim.cmd([[au BufRead,BufNewFile *.j2 setfiletype j2]])
 
 -- Plugins
 require("nvim-autopairs").setup({})

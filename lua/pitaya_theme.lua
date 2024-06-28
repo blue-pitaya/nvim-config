@@ -1,3 +1,40 @@
+-- From: https://github.com/scottmckendry/cyberdream.nvim
+local cyberdream_colors_default = {
+	bg = "#16181a",
+	bgAlt = "#1e2124",
+	bgHighlight = "#3c4048",
+	fg = "#ffffff",
+	lightGrey = "#bbd3ff",
+	grey = "#7b8496",
+	blue = "#5ea1ff",
+	green = "#5eff6c",
+	cyan = "#5ef1ff",
+	red = "#ff6e5e",
+	yellow = "#f1ff5e",
+	magenta = "#ff5ef1",
+	pink = "#ff5ea0",
+	orange = "#ffbd5e",
+	purple = "#bd5eff",
+}
+
+-- From: https://github.com/scottmckendry/cyberdream.nvim
+local cyberdream_colors_light = {
+	bg = "#ffffff",
+	bgAlt = "#eaeaea",
+	bgHighlight = "#acacac",
+	fg = "#16181a",
+	grey = "#7b8496",
+	blue = "#0057d1",
+	green = "#008b0c",
+	cyan = "#008c99",
+	red = "#d11500",
+	yellow = "#997b00",
+	magenta = "#d100bf",
+	pink = "#f40064",
+	orange = "#d17c00",
+	purple = "#a018ff",
+}
+
 local sc = {
 	c17 = "#00005f",
 	c24 = "#005f87",
@@ -29,9 +66,14 @@ local c = {
 
 	red = "#f27775",
 	pink = "#ff64b5",
-	blue = "#6ab9c9",
+	blue = "#7fbec9",
+    fr = "#60c9c3",
+    froggy3 = "#64dacb";
+    froggy2 = "#4cdac8";
+    froggy = "#4dc0b2";
 	green = "#64e6ae",
 	yellow = "#d0e385",
+    y = "#c6db73";
 	orange = "#f2a475",
 	dead_orange = "#cf9d81",
 
@@ -39,11 +81,11 @@ local c = {
 	dark_red = "#440606",
 	dark_blue = "#141c2e",
 
+	--foam = "#9ccfd8",
 	subtle = "#908caa",
 	subtle_darker = "#444351",
 	love = "#eb6f92",
 	rose = "#ea9a97",
-	foam = "#9ccfd8",
 	iris = "#c4a7e7",
 	subtle_green = "#61977c",
 	office_blue = "#31445c",
@@ -62,21 +104,24 @@ local definitions = {
 	{ "Normal", { fg = c.white } },
 	{ "Operator", { link = "Normal" } },
 
-	{ "Number", { fg = c.foam } },
+	{ "Number", { fg = c.blue } },
 	{ "Float", { link = "Number" } },
 
-	{ "Keyword", { fg = c.pink } },
+	{ "Keyword", { fg = cyberdream_colors_default.pink } },
 	{ "Conditional", { link = "Keyword" } },
 	{ "Include", { link = "Keyword" } },
 	{ "Repeat", { link = "Keyword" } },
 	{ "Statement", { link = "Keyword" } },
 
-	{ "Type", { fg = c.blue } },
+	{ "Type", { fg = c.fr } },
 	{ "Typedef", { link = "Type" } },
+	{ "Special", { link = "Type" } },
+	{ "SpecialChar", { link = "Type" } },
+	{ "SpecialComment", { link = "Type" } },
 
 	{ "String", { fg = c.dead_orange } },
 
-	{ "Function", { fg = c.yellow } },
+	{ "Function", { fg = c.y } },
 
 	{ "Comment", { fg = sc.c241 } },
 
@@ -89,22 +134,18 @@ local definitions = {
 	{ "Exception", { fg = sc.c38 } },
 	--{ 'Float', {fg = c151, }},
 	{ "Identifier", { fg = c.rose } },
-	{ "Label", { fg = c.foam } },
+	{ "Label", { fg = c.blue } },
 	{ "Macro", { fg = c.iris } },
 	{ "PreCondit", { fg = c.iris } },
 	{ "PreProc", { fg = sc.c38 } },
 
-	{ "Special", { fg = c.blue } },
-	{ "SpecialChar", { fg = c.blue } },
-	{ "SpecialComment", { fg = c.blue } },
 
-	{ "StorageClass", { fg = c.foam } },
-	{ "Structure", { fg = c.foam } },
+	{ "StorageClass", { fg = c.blue } },
+	{ "Structure", { fg = c.blue } },
 	{ "Tag", { fg = c.subtle } },
 	{ "Underlined", { underline = true } },
 	{ "Todo", { link = "Comment" } },
 	{ "Attribute", { fg = c.yellow } },
-	--{ 'Property', { fg = p.foam }},
 	{ "Property", { link = "Normal" } },
 
 	-- General
@@ -163,7 +204,7 @@ local definitions = {
 	-- Scala
 	-- { 'scalaKeywordModifier', { link = 'Keyword' }},
 	-- { 'scalaOperator', { link = 'Operator' }},
-	-- { 'scalaCapitalWord', { fg = p.foam }},
+	-- { 'scalaCapitalWord', { fg = p.blue }},
 	-- { 'scalaCaseFollowing', { link = "Normal" }},
 	-- { 'scalaAkkaSpecialWord', { link = "Normal" }},
 	-- { 'scalatestSpecialWord', { link = "Normal" }},
@@ -190,6 +231,8 @@ local definitions = {
 	{ "@markup.list.unchecked", { fg = c.rose } },
 	{ "@markup.link", { fg = c.blue } },
 	{ "@string.escape", { bg = c.subtle_darker } },
+
+	{ "@markup.strong", {} }, -- remove BOLD rule
 
 	-- HTML
 	{ "@tag.attribute", { fg = c.yellow } },
@@ -227,6 +270,9 @@ local definitions = {
 	{ "CmpItemMenu", { link = "NonText" } },
 	{ "CmpItemAbbr", { link = "Identifier" } },
 	{ "CmpItemAbbrDeprecated", { link = "Error" } },
+
+	{ "@string.special.url.html", {} }, -- disable underline for <a> in html
+	{ "@constructor.php", { link = "Function" } }, -- show constructor as function
 }
 
 local M = {
