@@ -92,6 +92,8 @@ local c = {
 }
 
 local definitions = {
+	{ "Normal", { fg = c.white, bg = "#0f0f0f" } },
+
 	{ "Search", { bg = c.office_blue } },
 	{ "CurSearch", { link = "Search" } },
 
@@ -101,7 +103,6 @@ local definitions = {
 
 	{ "Breakpoint", { fg = sc.c164 } },
 
-	{ "Normal", { fg = c.white } },
 	{ "Operator", { link = "Normal" } },
 
 	{ "Number", { fg = c.blue } },
@@ -149,7 +150,7 @@ local definitions = {
 
 	-- StatusLine
 	{ "StatusLine", { fg = sc.c249, bg = sc.c234 } },
-	{ "StatusLineNC", { fg = sc.c249, bg = sc.c237 } },
+	{ "StatusLineNC", { link = "Normal" } },
 
 	-- General
 	{ "VisualNOS", { fg = sc.c249 } },
