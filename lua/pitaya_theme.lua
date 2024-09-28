@@ -65,6 +65,7 @@ local c = {
 	white = "#e7e7e7",
 
 	red = "#f27775",
+	red2 = "#e77969",
 	pink = "#ff64b5",
 	blue = "#7fbec9",
 	fr = "#60c9c3",
@@ -108,7 +109,8 @@ local definitions = {
 	{ "Number", { fg = c.blue } },
 	{ "Float", { link = "Number" } },
 
-	{ "Keyword", { fg = cyberdream_colors_default.pink } },
+	--{ "Keyword", { fg = cyberdream_colors_default.pink } },
+	{ "Keyword", { fg = c.red2 } },
 	{ "Conditional", { link = "Keyword" } },
 	{ "Include", { link = "Keyword" } },
 	{ "Repeat", { link = "Keyword" } },
@@ -274,6 +276,9 @@ local definitions = {
 
 	{ "@string.special.url.html", {} }, -- disable underline for <a> in html
 	{ "@constructor.php", { link = "Function" } }, -- show constructor as function
+
+	--neotree
+	{ "NeoTreeGitUntracked", { link = "NeoTreeGitModified" } },
 }
 
 local M = {

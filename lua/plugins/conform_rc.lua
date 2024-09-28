@@ -8,6 +8,7 @@ require("conform").setup({
 		clojure = { "zprint" },
 		vue = { "prettierd" },
 		c = { "clang-format" },
+
 		-- Conform will run multiple formatters sequentially
 		--python = { "isort", "black" },
 		-- Use a sub-list to run only the first available formatter

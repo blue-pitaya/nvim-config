@@ -76,7 +76,15 @@ end
 -- vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(metals_config)]])
 
 -- TODO: add description how to make it work
-require("lspconfig").metals.setup({})
+--require("lspconfig").metals.setup({})
+
+-- JAVA
+--require("lspconfig").jdtls.setup({
+--	on_attach = function(client, _)
+--		-- disable syntax highlight from tsserver (treesitter is preffered)
+--		client.server_capabilities.semanticTokensProvider = nil
+--	end,
+--})
 
 -- HASKELL
 require("lspconfig").hls.setup({
