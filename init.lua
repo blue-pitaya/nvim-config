@@ -31,7 +31,6 @@ vim.g.cmp_is_enabled = true
 vim.g.diagnostics_virtual_text_enabled = true
 
 -- Plugins rc
-require("keybindings")
 
 -- Startup
 vim.cmd([[autocmd VimEnter * :clearjumps]])
@@ -40,25 +39,10 @@ vim.cmd([[autocmd VimEnter * :clearjumps]])
 vim.cmd([[au BufRead,BufNewFile *.blade.php setfiletype blade]])
 vim.cmd([[au BufRead,BufNewFile *.j2 setfiletype j2]])
 
--- Plugins
-require("nvim-autopairs").setup({})
-require("window-picker").setup({
-	selection_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-	other_win_hl_color = "#00005f",
-})
---require("colorizer").setup()
+require("my_plugins.status-linus").setup()
+require("my_plugins.alertus").setup()
+require("my_plugins.hex-colorus").setup()
 
-require("lsp_rc")
-require("plugins.telescope_rc")
-require("plugins.treesitter_rc")
-require("plugins.neo-tree_rc")
-require("plugins.conform_rc")
-require("plugins.diffview_rc")
-require("plugins.nvim-cmp_rc")
--- TODO: manually install shit later :)
-require("mason").setup({})
+require("keybindings")
 
--- My plugins
-require("plugins.status-linus").setup()
-require("plugins.alertus").setup()
-require("plugins.hex-colorus").setup()
+require("config.lazy")

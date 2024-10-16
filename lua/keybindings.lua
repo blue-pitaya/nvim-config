@@ -17,12 +17,9 @@ vim.keymap.set("n", "<C-P>", ":tabnext<CR>")
 vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
 
-vim.keymap.set("n", "<Leader>c", ":ToggleCompletion<CR>")
-
 vim.cmd([[autocmd FileType qf nnoremap <buffer> o :.cc<CR>]]) -- open file in qf window
 
 -- Window bindings
---noremap <silent> {Previous-Mapping} :<C-U>TmuxNavigatePrevious<cr>
 vim.keymap.set("n", "<C-Q>", "<C-W>q")
 vim.keymap.set("n", "<C-J>", "<C-W>j")
 vim.keymap.set("n", "<C-K>", "<C-W>k")
@@ -35,26 +32,17 @@ vim.keymap.set("n", "<leader>s", ":split<CR>")
 vim.keymap.set("n", "<C-space>", "<C-W>r")
 
 -- LSP
-vim.keymap.set("n", "gd", function()
-  require("telescope.builtin").lsp_definitions({ show_line = false, initial_mode = "normal" })
-end)
 vim.keymap.set("n", "J", function()
   vim.lsp.buf.code_action()
 end)
 vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
 vim.keymap.set("n", "L", function() vim.lsp.codelens.run() end)
 vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end)
-vim.keymap.set("n", "gr",
-  function() require("telescope.builtin").lsp_references({ show_line = false, initial_mode = "normal" }) end)
 vim.keymap.set("n", "<Leader>r", function() vim.lsp.buf.rename() end)
-vim.keymap.set("n", "<Leader>f", function() require("conform").format({ lsp_fallback = true }) end)
---vim.keymap.set("n", "<Leader>f", function() vim.cmd("Format") end)
 
 vim.keymap.set("n", "gk", function() vim.lsp.buf.signature_help() end)
 vim.keymap.set("i", "<C-K>", function() vim.lsp.buf.signature_help() end)
 vim.keymap.set("i", "<C-J>", function() vim.lsp.buf.code_action() end)
-
-vim.keymap.set("n", "<leader>m", ":MetalsOrganizeImports<CR>")
 
 -- Debugging
 vim.keymap.set("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>")
@@ -67,11 +55,6 @@ vim.keymap.set("n", "<F9>", ":lua require'dap'.continue()<CR>")
 --vim.keymap.set("n", "<leader>in" , ":lua require'dap'.step_into()<CR>")
 --vim.keymap.set("n", "<leader>ou" , ":lua require'dap'.step_out()<CR>")
 vim.keymap.set("n", "<F2>", ":lua require'dap'.repl.toggle()<CR>")
-
--- Spectre
---vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").open()<CR>', {
---  desc = "Open Spectre"
---})
 
 -- Past in command mode
 vim.api.nvim_set_keymap('c', '<C-v>', '<C-r>"', { noremap = true })
