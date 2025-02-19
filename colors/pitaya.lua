@@ -28,26 +28,13 @@ local sc = {
 
 local c = {
 	white = "#e7e7e7",
-
-	red = "#f27775",
-	red2 = "#e77969",
-	pink = "#ff64b5",
+	red = "#e77969",
 	blue = "#7fbec9",
-	fr = "#60c9c3",
-	froggy3 = "#64dacb",
-	froggy2 = "#4cdac8",
-	froggy = "#4dc0b2",
-	green = "#64e6ae",
-	yellow = "#d0e385",
-	y = "#c6db73",
-	orange = "#f2a475",
+	froggy = "#60c9c3",
+	yellow = "#c6db73",
 	dead_orange = "#cf9d81",
-
-	dark_green = "#062d06",
-	dark_red = "#440606",
-	dark_blue = "#141c2e",
-
-	--foam = "#9ccfd8",
+	orange = "#f2a475",
+	pink = "#ff64b5",
 	subtle = "#908caa",
 	subtle_darker = "#444351",
 	love = "#eb6f92",
@@ -55,6 +42,9 @@ local c = {
 	iris = "#c4a7e7",
 	subtle_green = "#61977c",
 	office_blue = "#31445c",
+	dark_green = "#062d06",
+	dark_red = "#440606",
+	dark_blue = "#141c2e",
 }
 
 local definitions = {
@@ -74,13 +64,13 @@ local definitions = {
 	{ "Number", { fg = c.blue } },
 	{ "Float", { link = "Number" } },
 
-	{ "Keyword", { fg = c.red2 } },
+	{ "Keyword", { fg = c.red } },
 	{ "Conditional", { link = "Keyword" } },
 	{ "Include", { link = "Keyword" } },
 	{ "Repeat", { link = "Keyword" } },
 	{ "Statement", { link = "Keyword" } },
 
-	{ "Type", { fg = c.fr } },
+	{ "Type", { fg = c.froggy } },
 	{ "Typedef", { link = "Type" } },
 	{ "Special", { link = "Type" } },
 	{ "SpecialChar", { link = "Type" } },
@@ -88,7 +78,7 @@ local definitions = {
 
 	{ "String", { fg = c.dead_orange } },
 
-	{ "Function", { fg = c.y } },
+	{ "Function", { fg = c.yellow } },
 
 	{ "Comment", { fg = sc.c241 } },
 

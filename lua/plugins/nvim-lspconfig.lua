@@ -1,19 +1,15 @@
 return {
 	"neovim/nvim-lspconfig",
 	config = function()
-		--    ◍ black
 		--    ◍ blade-formatter
 		--    ◍ elixir-ls
 		--    ◍ intelephense
-		--    ◍ phpstan
 		--    ◍ pint
 		--    ◍ prettierd
 		--    ◍ stylua
-		--    ◍ vue-language-server
 		--    ◍ zprint
 		--    ◍ zprint-clj
-		--
-		--
+
 		-- Toggle virtual text
 		vim.api.nvim_create_user_command("ToggleVirtError", function()
 			vim.g.diagnostics_virtual_text_enabled = not vim.g.diagnostics_virtual_text_enabled
@@ -97,8 +93,7 @@ return {
 
 		-- TYPESCRIPT
 		-- require: sudo pacman -S typescript typescript-language-server
-		require("lspconfig").tsserver.setup({
-			--cmd = "tsserver",
+		require("lspconfig").ts_ls.setup({
 			init_options = {
 				plugins = {
 					{
@@ -128,12 +123,12 @@ return {
 		--Enable (broadcasting) snippet capability for completion
 		local vscodeLangSeverCaps = vim.lsp.protocol.make_client_capabilities()
 		vscodeLangSeverCaps.textDocument.completion.completionItem.snippetSupport = true
-		require("lspconfig").html.setup({
-			capabilities = vscodeLangSeverCaps,
-		})
-		require("lspconfig").cssls.setup({
-			capabilities = vscodeLangSeverCaps,
-		})
+		--require("lspconfig").html.setup({
+		--	capabilities = vscodeLangSeverCaps,
+		--})
+		--require("lspconfig").cssls.setup({
+		--	capabilities = vscodeLangSeverCaps,
+		--})
 
 		-- VUE + TYPESCRIPT + most other JS FRAMEWORKS
 		-- require: sudo pacman -S typescript
@@ -203,7 +198,7 @@ return {
 
 		-- RUST
 		-- sudo pacman -S rust-analyzer
-		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+		-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 		require("lspconfig").rust_analyzer.setup({
 			--on_attach = function(client, bufnr)
 			--  if client.supports_method("textDocument/formatting") then
@@ -224,21 +219,21 @@ return {
 		require("lspconfig").bashls.setup({})
 
 		-- PYTHON
-		require("lspconfig").pyright.setup({
+		-- pipx install basedpyright
+		require("lspconfig").basedpyright.setup({
 			settings = {
-				pyright = {
-					-- Using Ruff's import organizer
+				basedpyright = {
+					typeCheckingMode = "basic",
 					disableOrganizeImports = true,
-				},
-				python = {
+					disableTaggedHints = false,
 					analysis = {
-						-- Ignore all files for analysis to exclusively use Ruff for linting
-						ignore = { "*" },
+						useLibraryCodeForTypes = true, -- Analyze library code for type information
+						autoImportCompletions = true,
+						autoSearchPaths = true,
 					},
 				},
 			},
 		})
-
 		require("lspconfig").ruff_lsp.setup({
 			on_attach = function(client, bufnr)
 				if client.name == "ruff_lsp" then
@@ -284,7 +279,6 @@ return {
 				},
 			},
 		})
-		--require("lspconfig").phpactor.setup({})
 
 		-- ANSIBLE
 		-- sudo pacman -S ansible-language-server ansible-lint

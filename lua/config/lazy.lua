@@ -15,6 +15,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- I disabled it because i want my fucking slash
+
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
@@ -33,4 +35,8 @@ require("lazy").setup({
 	-- automatically check for plugin updates
 	checker = { enabled = false },
 	lazy = false,
+	change_detection = {
+		enabled = false, -- disables automatic plugin reloading
+		notify = false, -- disables notifications when reloading happens
+	},
 })
