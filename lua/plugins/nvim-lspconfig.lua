@@ -98,7 +98,7 @@ return {
 				plugins = {
 					{
 						name = "@vue/typescript-plugin",
-						location = "/home/kodus/.local/lib/node_modules/@vue/typescript-plugin/lib",
+						location = "~/.local/lib/node_modules/@vue/typescript-plugin/lib",
 						languages = { "typescript", "vue" },
 					},
 				},

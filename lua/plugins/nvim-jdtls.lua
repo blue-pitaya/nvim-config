@@ -81,7 +81,7 @@ return {
 			cmd = {
 				"jdtls",
 				-- Need to download: https://projectlombok.org/download
-				--"--jvm-arg=" .. string.format("-javaagent:/home/kodus/.local/share/lsp_servers/lombok.jar"),
+				--"--jvm-arg=" .. string.format("-javaagent:~/.local/share/lsp_servers/lombok.jar"),
 			},
 			root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
 			on_attach = function(client, _)

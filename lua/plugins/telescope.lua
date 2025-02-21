@@ -1,7 +1,5 @@
 return {
-	--"nvim-telescope/telescope.nvim",
-	dir = "/home/kodus/projects/_forks/telescope.nvim",
-	tag = "0.1.8",
+	"blue-pitaya/telescope.nvim",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		require("telescope").setup({
