@@ -1,7 +1,9 @@
 return {
 	"mfussenegger/nvim-jdtls",
+	commit = "efe813854432a314b472226dca813f0f2598d44a",
 	lazy = true,
 	ft = "java",
+
 	config = function()
 		-- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 		local config = {

@@ -46,15 +46,15 @@ vim.keymap.set("i", "<C-J>", function() vim.lsp.buf.code_action() end)
 
 -- Debugging
 vim.keymap.set("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>")
-vim.keymap.set("n", "<F9>", ":lua require'dap'.continue()<CR>")
---vim.keymap.set("n", "<F10>", ":lua require'dap'.close();require'dapui'.close()<CR>")
+vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<CR>")
+vim.keymap.set("n", "<F10>", ":lua require'dap'.close();require'dapui'.close()<CR>")
 --vim.keymap.set("n", "<leader>l" , ":lua require'dap'.run_last()<CR>")
 --vim.keymap.set("n", "<leader>c" , ":lua require'dap'.run_to_cursor()<CR>")
---vim.keymap.set("n", "<F2><F2>", ":lua require'dapui'.toggle()<CR>")
+vim.keymap.set("n", "<F2><F2>", ":lua require'dapui'.toggle()<CR>")
 --vim.keymap.set("n", "<leader>ov" , ":lua require'dap'.step_over()<CR>")
 --vim.keymap.set("n", "<leader>in" , ":lua require'dap'.step_into()<CR>")
 --vim.keymap.set("n", "<leader>ou" , ":lua require'dap'.step_out()<CR>")
-vim.keymap.set("n", "<F2>", ":lua require'dap'.repl.toggle()<CR>")
+vim.keymap.set("n", "<Leader><F2>", ":lua require'dap'.repl.toggle()<CR>")
 
 -- Past in command mode
 vim.api.nvim_set_keymap('c', '<C-v>', '<C-r>"', { noremap = true })

@@ -289,7 +289,7 @@ return {
 		require("lspconfig").zls.setup({})
 
 		-- GO
-		-- sudo pacman -S gopls
+		-- sudo pacman -S gopls delve
 		require("lspconfig").gopls.setup({})
 
 		--require("lspconfig").clojure_lsp.setup({})
@@ -306,6 +306,7 @@ return {
 			--},
 		})
 
+		-- C/C++
 		require("lspconfig").clangd.setup({})
 	end,
 }
