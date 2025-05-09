@@ -84,15 +84,15 @@ return {
 					["<C-w><C-f>"] = actions.goto_file_split, -- Open the file in a new split
 					["<C-w>gf"] = actions.goto_file_tab, -- Open the file in a new tabpage
 					["o"] = actions.goto_file_tab, -- Open the file in a new tabpage
-					["<leader>e"] = actions.focus_files, -- Bring focus to the file panel
-					["<leader>b"] = actions.toggle_files, -- Toggle the file panel.
+					["<Leader>e"] = actions.focus_files, -- Bring focus to the file panel
+					["<Leader>b"] = actions.toggle_files, -- Toggle the file panel.
 					["g<C-x>"] = actions.cycle_layout, -- Cycle through available layouts.
 					["[x"] = actions.prev_conflict, -- In the merge_tool: jump to the previous conflict
 					["]x"] = actions.next_conflict, -- In the merge_tool: jump to the next conflict
-					["<leader>co"] = actions.conflict_choose("ours"), -- Choose the OURS version of a conflict
-					["<leader>ct"] = actions.conflict_choose("theirs"), -- Choose the THEIRS version of a conflict
-					["<leader>cb"] = actions.conflict_choose("base"), -- Choose the BASE version of a conflict
-					["<leader>ca"] = actions.conflict_choose("all"), -- Choose all the versions of a conflict
+					["<Leader>co"] = actions.conflict_choose("ours"), -- Choose the OURS version of a conflict
+					["<Leader>ct"] = actions.conflict_choose("theirs"), -- Choose the THEIRS version of a conflict
+					["<Leader>cb"] = actions.conflict_choose("base"), -- Choose the BASE version of a conflict
+					["<Leader>ca"] = actions.conflict_choose("all"), -- Choose all the versions of a conflict
 					["dx"] = actions.conflict_choose("none"), -- Delete the conflict region
 					["L"] = actions.toggle_stage_entry, -- Stage / unstage the selected entry.
 				},
@@ -112,6 +112,10 @@ return {
 					{ { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
 				},
 				file_panel = {
+					["<Leader>co"] = actions.conflict_choose("ours"), -- Choose the OURS version of a conflict
+					["<Leader>ct"] = actions.conflict_choose("theirs"), -- Choose the THEIRS version of a conflict
+					["<Leader>cb"] = actions.conflict_choose("base"), -- Choose the BASE version of a conflict
+					["<Leader>ca"] = actions.conflict_choose("all"), -- Choose all the versions of a conflict
 					["j"] = actions.next_entry, -- Bring the cursor to the next file entry
 					["<down>"] = actions.next_entry,
 					["k"] = actions.prev_entry, -- Bring the cursor to the previous file entry.

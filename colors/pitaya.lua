@@ -28,6 +28,8 @@ local sc = {
 
 local c = {
 	white = "#e7e7e7",
+	black = "#0f0f0f",
+
 	red = "#e77969",
 	blue = "#7fbec9",
 	froggy = "#60c9c3",
@@ -48,7 +50,7 @@ local c = {
 }
 
 local definitions = {
-	{ "Normal", { fg = c.white, bg = "#0f0f0f" } },
+	{ "Normal", { fg = c.white, bg = c.black } },
 
 	{ "Search", { bg = c.office_blue } },
 	{ "CurSearch", { link = "Search" } },
@@ -183,6 +185,7 @@ local definitions = {
 	{ "@markup.heading.4", { fg = c.iris } },
 	{ "@markup.heading.5", { fg = c.subtle } },
 	{ "@markup.heading.6", { fg = c.subtle } },
+	{ "@spell.markdown", { fg = c.white, bg = c.black } },
 	{ "@markup.list", { fg = c.pink } },
 	{ "@markup.list.checked", { fg = c.subtle_green } },
 	{ "@markup.list.unchecked", { fg = c.rose } },
@@ -233,6 +236,9 @@ local definitions = {
 
 	--neotree
 	{ "NeoTreeGitUntracked", { link = "NeoTreeGitModified" } },
+
+    --snippets
+    { "SnippetTabstop", {bg = sc.c234}}
 }
 
 for _, d in pairs(definitions) do

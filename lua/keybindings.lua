@@ -2,8 +2,8 @@
 -- https://github.com/neovim/neovim/pull/16591
 
 -- General
-vim.keymap.set("n", "<C-S>", ":update<CR>")
-vim.keymap.set("i", "<C-S>", "<ESC>:update<CR>")
+vim.keymap.set("n", "<C-S>", ":wa<CR>")
+vim.keymap.set("i", "<C-S>", "<ESC>:wa<CR>")
 vim.keymap.set("n", "<Space>", "<nop>")
 vim.keymap.set("v", "Y", '"+y') --copy to system-wide register
 vim.keymap.set("n", "<Leader>nh", ":nohlsearch<CR>")

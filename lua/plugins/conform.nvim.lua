@@ -8,6 +8,7 @@ return {
 				blade = { "blade-formatter" },
 				json = { "prettierd" },
 				typescript = { "prettierd" },
+				typescriptreact = { "prettierd" },
 				html = { "prettierd" },
 				css = { "prettierd" },
 				clojure = { "zprint" },

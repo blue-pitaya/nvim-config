@@ -103,7 +103,7 @@ return {
 					},
 				},
 			},
-			on_attach = function(client, _)
+			on_init = function(client, _)
 				-- disable syntax highlight from tsserver (treesitter is preffered)
 				client.server_capabilities.semanticTokensProvider = nil
 			end,
@@ -234,19 +234,14 @@ return {
 				},
 			},
 		})
-		require("lspconfig").ruff_lsp.setup({
+		-- sudo pacman -S ruff
+		require("lspconfig").ruff.setup({
 			on_attach = function(client, bufnr)
 				if client.name == "ruff_lsp" then
 					-- Disable hover in favor of Pyright
 					client.server_capabilities.hoverProvider = false
 				end
 			end,
-			init_options = {
-				settings = {
-					-- Any extra CLI arguments for `ruff` go here.
-					args = {},
-				},
-			},
 		})
 
 		-- PHP
