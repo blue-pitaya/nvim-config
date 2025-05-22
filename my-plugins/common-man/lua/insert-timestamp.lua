@@ -7,7 +7,7 @@ local function insert_timestamp()
 	local current_line = vim.api.nvim_get_current_line()
 	local updated_line = current_line:sub(1, col) .. timestamp .. current_line:sub(col + 1)
 	vim.api.nvim_set_current_line(updated_line)
-    vim.api.nvim_win_set_cursor(0, {row, col + #timestamp})
+	vim.api.nvim_win_set_cursor(0, { row, col + #timestamp })
 end
 
 M.setup = function()

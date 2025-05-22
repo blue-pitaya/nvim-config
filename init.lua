@@ -39,10 +39,10 @@ vim.cmd([[autocmd VimEnter * :clearjumps]])
 vim.cmd([[au BufRead,BufNewFile *.blade.php setfiletype blade]])
 vim.cmd([[au BufRead,BufNewFile *.j2 setfiletype j2]])
 
-require("my_plugins.status-linus").setup()
+-- require("my_plugins.status-linus").setup()
 require("my_plugins.alertus").setup()
-require("my_plugins.hex-colorus").setup()
-require("my_plugins.insert-timestamp").setup()
+-- require("my_plugins.hex-colorus").setup()
+--require("my_plugins.insert-timestamp").setup()
 
 require("keybindings")
 
