@@ -66,13 +66,6 @@ return {
 			require("telescope.builtin").git_status({ initial_mode = "normal" })
 		end)
 
-		vim.keymap.set("n", "gd", function()
-			require("telescope.builtin").lsp_definitions({ show_line = false, initial_mode = "normal" })
-		end)
-		vim.keymap.set("n", "gr", function()
-			require("telescope.builtin").lsp_references({ show_line = false, initial_mode = "normal" })
-		end)
-
 		-- Live grep selected text
 		function vim.getVisualSelection()
 			vim.cmd('noau normal! "vy"')

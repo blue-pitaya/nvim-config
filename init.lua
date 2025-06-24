@@ -44,6 +44,16 @@ require("my_plugins.alertus").setup()
 -- require("my_plugins.hex-colorus").setup()
 --require("my_plugins.insert-timestamp").setup()
 
+-- XAML
+local group = vim.api.nvim_create_augroup("XAML_filetype", { clear = true })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.axaml",
+	callback = function()
+		vim.bo.filetype = "xml"
+	end,
+	group = group,
+})
+
 require("keybindings")
 
 require("config.lazy")

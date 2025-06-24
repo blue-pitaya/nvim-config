@@ -86,6 +86,24 @@ return {
 		--	end,
 		--})
 
+		-- C#
+		require("lspconfig").omnisharp.setup({
+			cmd = {
+				"/home/kodus/packages/lsp/omnisharp/OmniSharp",
+				"-z",
+				"--hostPID",
+				tostring(vim.fn.getpid()),
+				"DotNet:enablePackageRestore=false",
+				"--encoding",
+				"utf-8",
+				"--languageserver",
+			},
+			on_init = function(client, _)
+				-- disable syntax highlight from tsserver (treesitter is preffered)
+				client.server_capabilities.semanticTokensProvider = nil
+			end,
+		})
+
 		-- HASKELL
 		require("lspconfig").hls.setup({
 			filetypes = { "haskell", "lhaskell", "cabal" },

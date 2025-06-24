@@ -33,16 +33,53 @@ vim.keymap.set("n", "<C-space>", "<C-W>r")
 
 -- LSP
 vim.keymap.set("n", "J", function()
-  vim.lsp.buf.code_action()
+	vim.lsp.buf.code_action()
 end)
-vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
-vim.keymap.set("n", "L", function() vim.lsp.codelens.run() end)
-vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end)
-vim.keymap.set("n", "<Leader>r", function() vim.lsp.buf.rename() end)
+vim.keymap.set("n", "K", function()
+	vim.lsp.buf.hover()
+end)
+vim.keymap.set("n", "L", function()
+	vim.lsp.codelens.run()
+end)
+vim.keymap.set("n", "gi", function()
+	vim.lsp.buf.implementation()
+end)
+vim.keymap.set("n", "<Leader>r", function()
+	vim.lsp.buf.rename()
+end)
+vim.keymap.set("n", "gk", function()
+	vim.lsp.buf.signature_help()
+end)
+vim.keymap.set("i", "<C-K>", function()
+	vim.lsp.buf.signature_help()
+end)
+vim.keymap.set("i", "<C-J>", function()
+	vim.lsp.buf.code_action()
+end)
 
-vim.keymap.set("n", "gk", function() vim.lsp.buf.signature_help() end)
-vim.keymap.set("i", "<C-K>", function() vim.lsp.buf.signature_help() end)
-vim.keymap.set("i", "<C-J>", function() vim.lsp.buf.code_action() end)
+-- Neovim since some version is adding default keybindings for LSP actions that triggers timeoutlen
+-- when i want to use "gr" as to show LSP references defined below
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grn")
+
+vim.keymap.set("n", "gd", function()
+	local ctx = { show_line = false, initial_mode = "normal" }
+	if vim.bo.filetype == "cs" then
+		require("omnisharp_extended").telescope_lsp_definition(ctx)
+	else
+		require("telescope.builtin").lsp_definitions(ctx)
+	end
+end)
+vim.keymap.set("n", "gr", function()
+	local ctx = { show_line = false, initial_mode = "normal" }
+	if vim.bo.filetype == "cs" then
+		require("omnisharp_extended").telescope_lsp_references(ctx)
+	else
+		require("telescope.builtin").lsp_references(ctx)
+	end
+end)
 
 -- Debugging
 vim.keymap.set("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>")
@@ -57,4 +94,6 @@ vim.keymap.set("n", "<F2><F2>", ":lua require'dapui'.toggle()<CR>")
 vim.keymap.set("n", "<Leader><F2>", ":lua require'dap'.repl.toggle()<CR>")
 
 -- Past in command mode
-vim.api.nvim_set_keymap('c', '<C-v>', '<C-r>"', { noremap = true })
+vim.api.nvim_set_keymap("c", "<C-v>", '<C-r>"', { noremap = true })
+
+vim.keymap.set("n", "<leader>eu", ":UnixusRun<CR>")
