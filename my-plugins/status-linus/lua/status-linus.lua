@@ -1,5 +1,21 @@
 local M = {}
 
+local function get_diagnostics()
+	local diagnostics = vim.diagnostic.get(0)
+	local count = { 0, 0, 0, 0 }
+
+	for _, diagnostic in ipairs(diagnostics) do
+		count[diagnostic.severity] = count[diagnostic.severity] + 1
+	end
+
+	return {
+		error = count[vim.diagnostic.severity.ERROR],
+		warn = count[vim.diagnostic.severity.WARN],
+		info = count[vim.diagnostic.severity.INFO],
+		hint = count[vim.diagnostic.severity.HINT],
+	}
+end
+
 function M.setup()
 	local icons = {
 		error = "󰅚 ", -- x000f015a
@@ -8,31 +24,27 @@ function M.setup()
 		hint = "󰌶 ", -- x000f0336
 	}
 
-	--local statusline_options = {
-	--	update_in_insert = false,
-	--}
-
 	vim.api.nvim_set_hl(0, "StatusLineFilename", { fg = "#000000", bg = "#ffff00", bold = true })
 
 	local statusline_diagnostics = ""
 	function UpdateDiagnosticsCount()
-		local counts = require("lib.diagnostics").get_diagnostics()
+		local counts = get_diagnostics()
 		local components = {}
 
 		if counts.error > 0 then
-			table.insert(components, "%#DiagnosticError#")
+			table.insert(components, "%#DiagnosticSignError#")
 			table.insert(components, icons.error .. " " .. counts.error)
 		end
 		if counts.warn > 0 then
-			table.insert(components, "%#DiagnosticWarn#")
+			table.insert(components, "%#DiagnosticSignWarn#")
 			table.insert(components, icons.warn .. " " .. counts.warn)
 		end
 		if counts.info > 0 then
-			table.insert(components, "%#DiagnosticInfo#")
+			table.insert(components, "%#DiagnosticSignInfo#")
 			table.insert(components, icons.info .. " " .. counts.info)
 		end
 		if counts.hint > 0 then
-			table.insert(components, "%#DiagnosticHint#")
+			table.insert(components, "%#DiagnosticSignHint#")
 			table.insert(components, icons.hint .. " " .. counts.hint)
 		end
 		table.insert(components, "%#StatusLine#")

@@ -1,59 +1,39 @@
+-- Custom settings
+vim.g.custom_autocomplete_enabled = true
+vim.g.custom_visible_tabs = false
+
 --General
 vim.opt.mouse = "a"
 vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.encoding = "utf-8"
 vim.opt.modeline = false
---vim.opt.signcolumn = "no"
 vim.opt.wrap = true
+
+-- Case insensitive search unless capital char exists
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Change tab to spaces
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
--- Show tabs
--- vim.opt.list = true
--- vim.opt.listchars = "tab:⦁."
-
--- Custom fillchars for prettier diffview
-vim.opt.fillchars:append({ diff = "╱" })
-
--- Case insensitive search unless capital char exists
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Colorscheme and plugins
-vim.cmd("colorscheme pitaya")
-
--- Custom globals
-vim.g.cmp_is_enabled = true
-vim.g.diagnostics_virtual_text_enabled = true
-
--- Plugins rc
+-- Visible tabs
+if vim.g.custom_visible_tabs then
+	vim.opt.list = true
+	vim.opt.listchars = "tab:⦁."
+end
 
 -- Startup
-vim.cmd([[autocmd VimEnter * :clearjumps]])
-
--- PHP XD
-vim.cmd([[au BufRead,BufNewFile *.blade.php setfiletype blade]])
-vim.cmd([[au BufRead,BufNewFile *.j2 setfiletype j2]])
-
--- require("my_plugins.status-linus").setup()
-require("my_plugins.alertus").setup()
--- require("my_plugins.hex-colorus").setup()
---require("my_plugins.insert-timestamp").setup()
-
--- XAML
-local group = vim.api.nvim_create_augroup("XAML_filetype", { clear = true })
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = "*.axaml",
+vim.cmd("colorscheme pitaya")
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+	pattern = "*",
 	callback = function()
-		vim.bo.filetype = "xml"
+		vim.cmd("clearjumps")
 	end,
-	group = group,
 })
 
-require("keybindings")
-
+require("config.filetypes")
+require("config.keybindings")
 require("config.lazy")

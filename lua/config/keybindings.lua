@@ -1,6 +1,3 @@
--- vim.keymap.set ref:
--- https://github.com/neovim/neovim/pull/16591
-
 -- General
 vim.keymap.set("n", "<C-S>", ":wa<CR>")
 vim.keymap.set("i", "<C-S>", "<ESC>:wa<CR>")
@@ -17,7 +14,8 @@ vim.keymap.set("n", "<C-P>", ":tabnext<CR>")
 vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
 
-vim.cmd([[autocmd FileType qf nnoremap <buffer> o :.cc<CR>]]) -- open file in qf window
+-- Open file from quickfix window by pressing "o"
+vim.cmd([[autocmd FileType qf nnoremap <buffer> o :.cc<CR>]])
 
 -- Window bindings
 vim.keymap.set("n", "<C-Q>", "<C-W>q")
@@ -32,11 +30,23 @@ vim.keymap.set("n", "<leader>s", ":split<CR>")
 vim.keymap.set("n", "<C-space>", "<C-W>r")
 
 -- LSP
+local border = {
+	{ "╭", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "╮", "FloatBorder" },
+	{ "│", "FloatBorder" },
+	{ "╯", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "╰", "FloatBorder" },
+	{ "│", "FloatBorder" },
+}
 vim.keymap.set("n", "J", function()
 	vim.lsp.buf.code_action()
 end)
 vim.keymap.set("n", "K", function()
-	vim.lsp.buf.hover()
+	vim.lsp.buf.hover({
+		border = border,
+	})
 end)
 vim.keymap.set("n", "L", function()
 	vim.lsp.codelens.run()
@@ -48,37 +58,29 @@ vim.keymap.set("n", "<Leader>r", function()
 	vim.lsp.buf.rename()
 end)
 vim.keymap.set("n", "gk", function()
-	vim.lsp.buf.signature_help()
+	vim.lsp.buf.signature_help({
+		border = border,
+	})
 end)
 vim.keymap.set("i", "<C-K>", function()
-	vim.lsp.buf.signature_help()
+	vim.lsp.buf.signature_help({
+		border = border,
+	})
 end)
 vim.keymap.set("i", "<C-J>", function()
 	vim.lsp.buf.code_action()
 end)
-
 -- Neovim since some version is adding default keybindings for LSP actions that triggers timeoutlen
 -- when i want to use "gr" as to show LSP references defined below
 vim.keymap.del("n", "gri")
 vim.keymap.del("n", "grr")
 vim.keymap.del("n", "gra")
 vim.keymap.del("n", "grn")
-
 vim.keymap.set("n", "gd", function()
-	local ctx = { show_line = false, initial_mode = "normal" }
-	if vim.bo.filetype == "cs" then
-		require("omnisharp_extended").telescope_lsp_definition(ctx)
-	else
-		require("telescope.builtin").lsp_definitions(ctx)
-	end
+	require("telescope.builtin").lsp_definitions({ show_line = false, initial_mode = "normal" })
 end)
 vim.keymap.set("n", "gr", function()
-	local ctx = { show_line = false, initial_mode = "normal" }
-	if vim.bo.filetype == "cs" then
-		require("omnisharp_extended").telescope_lsp_references(ctx)
-	else
-		require("telescope.builtin").lsp_references(ctx)
-	end
+	require("telescope.builtin").lsp_definitions({ show_line = false, initial_mode = "normal" })
 end)
 
 -- Debugging
@@ -92,8 +94,3 @@ vim.keymap.set("n", "<F2><F2>", ":lua require'dapui'.toggle()<CR>")
 --vim.keymap.set("n", "<leader>in" , ":lua require'dap'.step_into()<CR>")
 --vim.keymap.set("n", "<leader>ou" , ":lua require'dap'.step_out()<CR>")
 vim.keymap.set("n", "<Leader><F2>", ":lua require'dap'.repl.toggle()<CR>")
-
--- Past in command mode
-vim.api.nvim_set_keymap("c", "<C-v>", '<C-r>"', { noremap = true })
-
-vim.keymap.set("n", "<leader>eu", ":UnixusRun<CR>")

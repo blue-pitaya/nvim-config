@@ -1,3 +1,12 @@
+-- npm bins must be set to ~/.local
+-- npm install -g prettier @prettier/plugin-xml
+-- https://github.com/prettier/plugin-xml
+
+--    ◍ blade-formatter
+--    ◍ intelephense
+--    ◍ pint
+--    ◍ prettierd
+--    ◍ stylua
 return {
 	"stevearc/conform.nvim",
 	config = function()
@@ -6,24 +15,45 @@ return {
 				lua = { "stylua" },
 				php = { "pint" },
 				blade = { "blade-formatter" },
-				json = { "prettierd" },
-				typescript = { "prettierd" },
-				typescriptreact = { "prettierd" },
-				html = { "prettierd" },
-				css = { "prettierd" },
-				clojure = { "zprint" },
-				vue = { "prettierd" },
+				json = { "prettier" },
+				typescript = { "prettier" },
+				typescriptreact = { "prettier" },
+				html = { "prettier" },
+				css = { "prettier" },
 				c = { "clang-format" },
-
-				-- Conform will run multiple formatters sequentially
-				--python = { "isort", "black" },
-				-- Use a sub-list to run only the first available formatter
-				--javascript = { { "prettierd", "prettier" } },
+				xml = { "prettier-xml" },
+			},
+			formatters = {
+				["prettier-xml"] = {
+					command = "prettier",
+					args = {
+						"--plugin",
+						"/home/kodus/.local/lib/node_modules/@prettier/plugin-xml/src/plugin.js",
+						"--parser",
+						"xml",
+						"--tab-width",
+						"4",
+						"--xml-whitespace-sensitivity",
+						"ignore",
+					},
+					stdin = true,
+				},
 			},
 		})
 
 		vim.keymap.set("n", "<Leader>f", function()
 			require("conform").format({ lsp_fallback = true })
+		end)
+
+		-- Autoformat before saving
+		vim.keymap.set("n", "<C-S>", function()
+			require("conform").format({ lsp_fallback = true })
+			vim.cmd("wa")
+		end)
+		vim.keymap.set("i", "<C-S>", function()
+			require("conform").format({ lsp_fallback = true })
+			vim.cmd("stopinsert")
+			vim.cmd("wa")
 		end)
 	end,
 }

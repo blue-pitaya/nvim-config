@@ -4,12 +4,7 @@ return {
 		local cmp = require("cmp")
 
 		cmp.setup({
-			enabled = vim.g.cmp_is_enabled,
-			--snippet = {
-			--  expand = function(args)
-			--    require('snippy').expand_snippet(args.body)
-			--  end,
-			--},
+			enabled = vim.g.custom_autocomplete_enabled,
 			window = {
 				completion = {
 					border = "rounded",
@@ -38,11 +33,5 @@ return {
 				ghost_text = true,
 			},
 		})
-
-		-- Toggle autocompletion
-		vim.api.nvim_create_user_command("ToggleCompletion", function()
-			vim.g.cmp_is_enabled = not vim.g.cmp_is_enabled
-			cmp.setup({ enabled = vim.g.cmp_is_enabled })
-		end, {})
 	end,
 }

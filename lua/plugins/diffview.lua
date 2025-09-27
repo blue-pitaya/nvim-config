@@ -1,6 +1,9 @@
 return {
 	"sindrets/diffview.nvim",
 	config = function()
+		-- Custom fillchars for prettier diffview
+		vim.opt.fillchars:append({ diff = "╱" })
+
 		local actions = require("diffview.actions")
 
 		require("diffview").setup({
