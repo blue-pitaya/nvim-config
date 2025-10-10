@@ -15,6 +15,7 @@ return {
 				"php",
 				"python",
 				"query",
+				"razor",
 				"rust",
 				"scala",
 				"tsx",

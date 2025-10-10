@@ -10,6 +10,8 @@
 return {
 	"stevearc/conform.nvim",
 	config = function()
+		local home = os.getenv("HOME")
+
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
@@ -28,7 +30,7 @@ return {
 					command = "prettier",
 					args = {
 						"--plugin",
-						"/home/kodus/.local/lib/node_modules/@prettier/plugin-xml/src/plugin.js",
+						home .. "/.local/lib/node_modules/@prettier/plugin-xml/src/plugin.js",
 						"--parser",
 						"xml",
 						"--tab-width",

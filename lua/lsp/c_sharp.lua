@@ -1,8 +1,12 @@
 return {
+	--- require: sudo pacman -S dotnet-sdk
 	enable = function()
+		local home = os.getenv("HOME")
+
 		vim.lsp.config("roslyn_ls", {
 			cmd = {
-				"/home/kodus/packages/lsp/roslyn_ls/content/LanguageServer/linux-x64/Microsoft.CodeAnalysis.LanguageServer",
+				home
+					.. "/packages/lsp/roslyn_ls/content/LanguageServer/linux-x64/Microsoft.CodeAnalysis.LanguageServer",
 				"--logLevel", -- this property is required by the server
 				"Information",
 				"--extensionLogDirectory", -- this property is required by the server

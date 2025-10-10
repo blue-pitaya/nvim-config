@@ -80,7 +80,7 @@ vim.keymap.set("n", "gd", function()
 	require("telescope.builtin").lsp_definitions({ show_line = false, initial_mode = "normal" })
 end)
 vim.keymap.set("n", "gr", function()
-	require("telescope.builtin").lsp_definitions({ show_line = false, initial_mode = "normal" })
+	require("telescope.builtin").lsp_references({ show_line = false, initial_mode = "normal" })
 end)
 
 -- Debugging
