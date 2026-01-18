@@ -36,4 +36,5 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 
 require("config.filetypes")
 require("config.keybindings")
+require("config.diagnostics")
 require("config.lazy")

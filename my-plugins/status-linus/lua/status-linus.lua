@@ -1,5 +1,7 @@
 local M = {}
 
+-- FIXME: Disabled diagnostics should not be shown on status line
+
 local function get_diagnostics()
 	local diagnostics = vim.diagnostic.get(0)
 	local count = { 0, 0, 0, 0 }

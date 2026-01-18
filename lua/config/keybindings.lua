@@ -70,12 +70,15 @@ end)
 vim.keymap.set("i", "<C-J>", function()
 	vim.lsp.buf.code_action()
 end)
+
 -- Neovim since some version is adding default keybindings for LSP actions that triggers timeoutlen
 -- when i want to use "gr" as to show LSP references defined below
 vim.keymap.del("n", "gri")
 vim.keymap.del("n", "grr")
 vim.keymap.del("n", "gra")
 vim.keymap.del("n", "grn")
+vim.keymap.del("n", "grt")
+
 vim.keymap.set("n", "gd", function()
 	require("telescope.builtin").lsp_definitions({ show_line = false, initial_mode = "normal" })
 end)

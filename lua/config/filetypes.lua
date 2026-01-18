@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.cshtml", "*.razor" },
 	callback = function()
-		vim.bo.filetype = "razor"
+		vim.bo.filetype = "html"
 	end,
 })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
