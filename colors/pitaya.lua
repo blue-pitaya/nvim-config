@@ -256,6 +256,8 @@ local definitions = {
 
 	{ "Changed", { fg = b.bright_yellow } },
 	{ "Added", { fg = b.bright_green } },
+
+	{ "@keyword.coroutine.typescript", { fg = c.love } },
 }
 
 for _, d in pairs(definitions) do

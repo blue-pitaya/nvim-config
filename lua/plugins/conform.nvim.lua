@@ -1,12 +1,6 @@
--- npm bins must be set to ~/.local
+-- sudo pacman -S stylua
+-- composer global require laravel/pint
 -- npm install -g prettier @prettier/plugin-xml
--- https://github.com/prettier/plugin-xml
-
---    ◍ blade-formatter
---    ◍ intelephense
---    ◍ pint
---    ◍ prettierd
---    ◍ stylua
 return {
 	"stevearc/conform.nvim",
 	config = function()

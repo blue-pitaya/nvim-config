@@ -1,24 +1,59 @@
 return {
-	"mfussenegger/nvim-dap",
-	commit = "04ce47fc5a6ef2b717f33c320fc003091cebac40", --v9.0.0
-	config = function()
-		vim.fn.sign_define("DapBreakpoint", { text = "B", texthl = "Breakpoint" })
-		--local dap = require("dap")
+    "mfussenegger/nvim-dap",
+    config = function()
+        vim.fn.sign_define("DapBreakpoint", { text = "B", texthl = "Breakpoint" })
 
-		--dap.adapters.coreclr = {
-		--	type = "executable",
-		--	command = "/usr/local/bin/netcoredbg/netcoredbg",
-		--	args = { "--interpreter=vscode" },
-		--}
-		--dap.configurations.cs = {
-		--	{
-		--		type = "coreclr",
-		--		name = "launch - netcoredbg",
-		--		request = "launch",
-		--		program = function()
-		--			return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
-		--		end,
-		--	},
-		--}
-	end,
+        local dap = require('dap')
+
+        -- Adapter: tells nvim-dap how to launch/connect to Delve
+        dap.adapters.go = {
+            type = 'server',
+            port = '${port}',
+            executable = {
+                command = 'dlv',
+                args = { 'dap', '-l', '127.0.0.1:${port}' },
+            },
+        }
+
+        dap.adapters.delve_remote = {
+            type = 'server',
+            host = '127.0.0.1',
+            port = 38697,
+        }
+
+        dap.configurations.go = {
+            {
+                type = 'go',
+                name = 'Debug',
+                request = 'launch',
+                program = '${file}',
+            },
+            {
+                type = 'go',
+                name = 'Debug Package',
+                request = 'launch',
+                program = '${fileDirname}',
+            },
+            {
+                type = 'go',
+                name = 'Debug Test',
+                request = 'launch',
+                mode = 'test',
+                program = '${fileDirname}',
+            },
+            {
+                type = 'go',
+                name = 'Attach to Process',
+                request = 'attach',
+                mode = 'local',
+                processId = require('dap.utils').pick_process,
+            },
+            {
+                type = 'delve_remote',
+                name = 'Attach Remote',
+                request = 'attach',
+                mode = 'remote',
+            }
+        }
+    end,
 }

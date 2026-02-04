@@ -3,12 +3,12 @@
 vim.diagnostic.config({
 	severity_sort = true,
 	virtual_text = {
-		severity = { min = vim.diagnostic.severity.WARN },
+		severity = { min = vim.diagnostic.severity.HINT },
 	},
 	signs = {
-		severity = { min = vim.diagnostic.severity.WARN },
+		severity = { min = vim.diagnostic.severity.HINT },
 	},
 	underline = {
-		severity = { min = vim.diagnostic.severity.WARN },
+		severity = { min = vim.diagnostic.severity.HINT },
 	},
 })
