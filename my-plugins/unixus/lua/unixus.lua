@@ -21,7 +21,7 @@ M.setup = function()
 	vim.api.nvim_create_user_command("UnixusRun", function()
 		send_buffer()
 	end, {})
-	vim.keymap.set("n", "<leader>eu", ":UnixusRun<CR>")
+	--vim.keymap.set("n", "<leader>eu", ":UnixusRun<CR>")
 end
 
 return M
