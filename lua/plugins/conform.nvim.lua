@@ -10,7 +10,6 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				php = { "pint" },
-				blade = { "blade-formatter" },
 				json = { "prettier" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },

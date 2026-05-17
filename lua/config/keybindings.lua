@@ -30,23 +30,11 @@ vim.keymap.set("n", "<leader>s", ":split<CR>")
 vim.keymap.set("n", "<C-space>", "<C-W>r")
 
 -- LSP
-local border = {
-	{ "╭", "FloatBorder" },
-	{ "─", "FloatBorder" },
-	{ "╮", "FloatBorder" },
-	{ "│", "FloatBorder" },
-	{ "╯", "FloatBorder" },
-	{ "─", "FloatBorder" },
-	{ "╰", "FloatBorder" },
-	{ "│", "FloatBorder" },
-}
 vim.keymap.set("n", "J", function()
 	vim.lsp.buf.code_action()
 end)
 vim.keymap.set("n", "K", function()
-	vim.lsp.buf.hover({
-		border = border,
-	})
+	vim.lsp.buf.hover({ border = "rounded" })
 end)
 vim.keymap.set("n", "L", function()
 	vim.lsp.codelens.run()
@@ -58,17 +46,7 @@ vim.keymap.set("n", "<Leader>r", function()
 	vim.lsp.buf.rename()
 end)
 vim.keymap.set("n", "gk", function()
-	vim.lsp.buf.signature_help({
-		border = border,
-	})
-end)
-vim.keymap.set("i", "<C-K>", function()
-	vim.lsp.buf.signature_help({
-		border = border,
-	})
-end)
-vim.keymap.set("i", "<C-J>", function()
-	vim.lsp.buf.code_action()
+	vim.lsp.buf.signature_help({ border = "rounded" })
 end)
 
 -- Neovim since some version is adding default keybindings for LSP actions that triggers timeoutlen

@@ -1,5 +1,3 @@
--- FIXME: diable hints and info only for C#
-
 vim.diagnostic.config({
 	severity_sort = true,
 	virtual_text = {
@@ -7,6 +5,18 @@ vim.diagnostic.config({
 	},
 	signs = {
 		severity = { min = vim.diagnostic.severity.HINT },
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+			[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+			[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+			[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+		},
 	},
 	underline = {
 		severity = { min = vim.diagnostic.severity.HINT },

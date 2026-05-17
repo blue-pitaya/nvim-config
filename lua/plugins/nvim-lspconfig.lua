@@ -19,10 +19,7 @@ return {
 		require("lsp.php").enable()
 		require("lsp.python").enable()
 		require("lsp.rust").enable()
-		require("lsp.tailwindcss").enable()
 		require("lsp.typescript").enable()
 		require("lsp.kotlin").enable()
-		--require("lsp.java").enable()
-		--require("lsp.scala").enable()
 	end,
 }

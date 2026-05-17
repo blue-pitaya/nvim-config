@@ -83,5 +83,13 @@ return {
 			local text = vim.getVisualSelection()
 			require("telescope.builtin").live_grep({ default_text = text })
 		end, { noremap = true, silent = true })
+
+		-- Disable autocomplete in telescope
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "TelescopePrompt",
+			callback = function()
+				vim.bo.autocomplete = false
+			end,
+		})
 	end,
 }
