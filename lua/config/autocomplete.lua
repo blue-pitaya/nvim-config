@@ -42,6 +42,19 @@ vim.keymap.set("i", "<C-k>", function()
 	end
 end, { expr = true, noremap = true })
 
+vim.keymap.set("i", "<CR>", function()
+	if vim.fn.pumvisible() ~= 0 then
+		local info = vim.fn.complete_info({ "selected" })
+		if info.selected == -1 then
+			return vim.api.nvim_replace_termcodes("<C-n><C-y>", true, true, true)
+		else
+			return vim.api.nvim_replace_termcodes("<C-y>", true, true, true)
+		end
+	else
+		return vim.api.nvim_replace_termcodes("<CR>", true, true, true)
+	end
+end, { expr = true, noremap = true })
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -50,6 +63,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 		if client:supports_method("textDocument/completion") then
+			-- trigger on every printable keypress, like nvim-cmp did
+			local chars = {}
+			for i = 32, 126 do
+				table.insert(chars, string.char(i))
+			end
+			client.server_capabilities.completionProvider.triggerCharacters = chars
+
 			vim.lsp.completion.enable(true, client.id, ev.buf, {
 				autotrigger = true,
 			})
