@@ -33,6 +33,9 @@ return {
 					},
 					stdin = true,
 				},
+				prettier = {
+					prepend_args = { "--html-whitespace-sensitivity", "ignore" },
+				},
 			},
 		})
 

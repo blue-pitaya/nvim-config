@@ -18,10 +18,5 @@ return {
 				pcall(vim.treesitter.start, ev.buf)
 			end,
 		})
-
-		-- TODO:
-		--vim.treesitter.language.register("php", "j2")
-		--vim.treesitter.language.register("html", "blade")
-		--vim.treesitter.language.register("html", "htmldjango")
 	end,
 }

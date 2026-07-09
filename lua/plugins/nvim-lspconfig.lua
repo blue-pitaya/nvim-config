@@ -14,7 +14,7 @@ return {
 		require("lsp.css").enable()
 		require("lsp.dockerfile").enable()
 		require("lsp.go").enable()
-		require("lsp.html").enable()
+		--require("lsp.html").enable()
 		require("lsp.lua").enable()
 		require("lsp.php").enable()
 		require("lsp.python").enable()

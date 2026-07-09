@@ -4,7 +4,7 @@ vim.o.autocomplete = vim.g.custom_autocomplete_enabled and true or false
 -- Disable autocompletion form anywhere except when explicitly declared (LSP)
 vim.o.complete = ""
 vim.o.pumborder = "rounded"
-vim.o.pummaxwidth = 40
+-- vim.o.pummaxwidth = 40
 vim.o.completeopt = "menu,menuone,noselect,popup"
 
 -- Set winborder globally to give all floating windows a border
@@ -42,16 +42,29 @@ vim.keymap.set("i", "<C-k>", function()
 	end
 end, { expr = true, noremap = true })
 
-vim.keymap.set("i", "<CR>", function()
+vim.keymap.set("i", "<Tab>", function()
 	if vim.fn.pumvisible() ~= 0 then
 		local info = vim.fn.complete_info({ "selected" })
 		if info.selected == -1 then
-			return vim.api.nvim_replace_termcodes("<C-n><C-y>", true, true, true)
+			return "<C-n><C-y>"
 		else
-			return vim.api.nvim_replace_termcodes("<C-y>", true, true, true)
+			return "<C-y>"
 		end
 	else
-		return vim.api.nvim_replace_termcodes("<CR>", true, true, true)
+		return "<Tab>"
+	end
+end, { expr = true, noremap = true })
+
+vim.keymap.set("i", "<CR>", function()
+	if vim.fn.pumvisible() ~= 0 then
+		local info = vim.fn.complete_info({ "selected" })
+		if info.selected ~= -1 then
+			return "<C-y>"
+		else
+			return "<CR>"
+		end
+	else
+		return "<CR>"
 	end
 end, { expr = true, noremap = true })
 

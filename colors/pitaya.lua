@@ -263,3 +263,12 @@ local definitions = {
 for _, d in pairs(definitions) do
 	vim.api.nvim_set_hl(0, d[1], d[2])
 end
+
+vim.api.nvim_set_hl(0, "Pmenu", { fg = "#c0caf5", bg = "#1a1b26" })
+vim.api.nvim_set_hl(0, "PmenuSel", { fg = "#1a1b26", bg = "#7aa2f7" })
+vim.api.nvim_set_hl(0, "PmenuKind", { fg = "#bb9af7", bg = "#1a1b26" })
+vim.api.nvim_set_hl(0, "PmenuKindSel", { fg = "#1a1b26", bg = "#7aa2f7" })
+vim.api.nvim_set_hl(0, "PmenuExtra", { fg = "#565f89", bg = "#1a1b26" })
+vim.api.nvim_set_hl(0, "PmenuExtraSel", { fg = "#1a1b26", bg = "#7aa2f7" })
+vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "#1a1b26" })
+vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "#565f89" })
