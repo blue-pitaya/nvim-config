@@ -1,37 +1,39 @@
--- sudo pacman -S stylua
--- composer global require laravel/pint
--- npm install -g prettier @prettier/plugin-xml
 return {
 	"stevearc/conform.nvim",
 	config = function()
-		local home = os.getenv("HOME")
-
 		require("conform").setup({
 			formatters_by_ft = {
-				lua = { "stylua" },
-				php = { "pint" },
+				-- sudo pacman -S prettier
+				blade = { "blade-prettier" },
+				-- sudo pacman -S clang
+				c = { "clang-format" },
+				css = { "prettier" },
+				html = { "prettier" },
 				json = { "prettier" },
+				-- sudo pacman -S stylua
+				lua = { "stylua" },
+				-- composer global require laravel/pint
+				php = { "pint" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
-				html = { "prettier" },
-				css = { "prettier" },
-				c = { "clang-format" },
-				xml = { "prettier-xml" },
+				-- sudo pacman -S libxml2
+				xml = { "xmllint" },
 			},
 			formatters = {
-				["prettier-xml"] = {
+				-- `--html-whitespace-sensitivity ignore` to avoid ugly HTML tags breaking
+				["blade-prettier"] = {
 					command = "prettier",
 					args = {
-						"--plugin",
-						home .. "/.local/lib/node_modules/@prettier/plugin-xml/src/plugin.js",
 						"--parser",
-						"xml",
-						"--tab-width",
-						"4",
-						"--xml-whitespace-sensitivity",
+						"html",
+						"--html-whitespace-sensitivity",
 						"ignore",
+						"--stdin-filepath",
+						"$FILENAME",
 					},
 					stdin = true,
+					-- Need cwd to properly detect prettierrc
+					cwd = require("conform.util").root_file({ ".prettierrc" }),
 				},
 				prettier = {
 					prepend_args = { "--html-whitespace-sensitivity", "ignore" },

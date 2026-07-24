@@ -10,12 +10,12 @@ vim.o.completeopt = "menu,menuone,noselect,popup"
 -- Set winborder globally to give all floating windows a border
 vim.o.winborder = "rounded"
 
+-- Used for floating documentation block which appears when cycling through autocomplete entries
 vim.api.nvim_create_autocmd("CompleteChanged", {
 	callback = function()
 		for _, winid in ipairs(vim.api.nvim_list_wins()) do
 			local config = vim.api.nvim_win_get_config(winid)
 			if config.relative ~= "" and not config.border then
-				-- floating window without border, likely the info popup
 				pcall(vim.api.nvim_win_set_config, winid, { border = "rounded" })
 			end
 		end
