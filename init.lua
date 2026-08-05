@@ -38,6 +38,7 @@ vim.opt.foldmethod = "indent" -- fold by indentation level
 vim.opt.foldlevel = 99 -- start with all folds open
 vim.opt.foldlevelstart = 99
 vim.opt.viewoptions = { "folds", "cursor" } -- only persist folds and cursor position
+vim.keymap.set("n", "<leader>z", "zMzv")
 
 -- Persist folds across buffer switches, reset on restart
 vim.api.nvim_create_autocmd("BufWinLeave", { pattern = "*", command = "silent! mkview" })
