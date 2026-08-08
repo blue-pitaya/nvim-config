@@ -22,3 +22,10 @@ vim.diagnostic.config({
 		severity = { min = vim.diagnostic.severity.HINT },
 	},
 })
+
+-- Only color line number if diagnostic occurered on given line
+local signs = { "Error", "Warn", "Hint", "Info" }
+for _, sign in pairs(signs) do
+	local hl = "DiagnosticSign" .. sign
+	vim.fn.sign_define(hl, { text = "", texthl = hl, numhl = hl })
+end

@@ -332,3 +332,47 @@ load_plugin("~/packages/nvim-plugins/indent-blankline.nvim", {
 		})
 	end,
 })
+
+-- LSP SECTION
+-- Based on https://github.com/neovim/nvim-lspconfig for optimal configs
+
+-- Bash
+-- require: sudo pacman -S bash-language-server
+vim.lsp.config("bashls", {
+	cmd = { "bash-language-server", "start" },
+	settings = {
+		bashIde = {
+			globPattern = vim.env.GLOB_PATTERN or "*@(.sh|.inc|.bash|.command)",
+		},
+	},
+	filetypes = { "bash", "sh" },
+	root_markers = { ".git" },
+})
+vim.lsp.enable("bashls")
+
+-- C/C++
+-- sudo pacman -S clang
+vim.lsp.config("clangd", {
+	cmd = { "clangd" },
+	filetypes = { "c", "cpp" },
+	root_markers = {
+		".clangd",
+		".clang-format",
+		"compile_commands.json",
+		".git",
+	},
+	on_attach = function(client, _)
+		-- disable syntax highlight from tsserver (treesitter is preffered)
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
+})
+vim.lsp.enable("clangd")
+
+-- Go
+-- sudo pacman -S gopls delve
+vim.lsp.config("gopls", {
+	cmd = { "gopls" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	root_markers = { "go.work", "go.mod", ".git" },
+})
+vim.lsp.enable("gopls")
