@@ -65,3 +65,24 @@ require("config.filetypes")
 require("config.keybindings")
 require("config.diagnostics")
 require("config.lazy")
+
+-- Experimental
+local function load_plugin(path, opts)
+	path = vim.fn.expand(path)
+	if vim.fn.isdirectory(path) == 0 then
+		vim.notify("Plugin not found: " .. path, vim.log.levels.WARN)
+		return
+	end
+	vim.opt.rtp:prepend(path)
+	if opts and opts.config then
+		opts.config()
+	end
+end
+
+-- My plugins
+require("my-plugins").setup()
+load_plugin("~/projects/nvim-file-tree-fuzzy-finder", {
+	config = function()
+		require("nvim-file-tree-fuzzy-finder").setup({})
+	end,
+})
