@@ -66,7 +66,32 @@ require("config.keybindings")
 require("config.diagnostics")
 require("config.lazy")
 
--- PLGUIN SECTION
+-- ============================================================
+-- Quickfix extensions
+-- ============================================================
+
+-- Get only unique paths by pressing <leader>u
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "qf",
+	callback = function()
+		vim.keymap.set("n", "<leader>u", function()
+			local seen, out = {}, {}
+			for _, e in ipairs(vim.fn.getqflist()) do
+				local name = vim.api.nvim_buf_get_name(e.bufnr)
+				if name ~= "" and not seen[name] then
+					seen[name] = true
+					out[#out + 1] = e
+				end
+			end
+			vim.fn.setqflist({}, " ", { nr = "$", items = out })
+			vim.cmd("copen")
+		end, { buffer = true })
+	end,
+})
+
+-- ============================================================
+-- Plugins
+-- ============================================================
 
 local function load_plugin(path, opts)
 	path = vim.fn.expand(path)
