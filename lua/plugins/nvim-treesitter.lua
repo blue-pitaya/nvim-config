@@ -13,13 +13,18 @@ return {
 			},
 		})
 
-		vim.api.nvim_create_autocmd("FileType", {
-			callback = function(ev)
-				pcall(vim.treesitter.start, ev.buf)
-				-- treesitter-based indentation (experimental), returns -1 for languages without indent queries
+        vim.api.nvim_create_autocmd("FileType", {
+            callback = function(ev)
+                pcall(vim.treesitter.start, ev.buf)
+                -- use treesitter indentation when indent queries exist; fall back to autoindent otherwise
 				-- https://github.com/nvim-treesitter/nvim-treesitter#indentation
-				vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-			end,
-		})
+                local has_indent = pcall(function()
+                    return vim.treesitter.query.get(ev.match, "indents") ~= nil
+                end)
+                if has_indent and vim.treesitter.query.get(ev.match, "indents") then
+                    vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end
+            end,
+        })
 	end,
 }
