@@ -35,6 +35,9 @@ return {
 					sort_mru = true,
 					ignore_current_buffer = true,
 				},
+				git_status = {
+					path_display = {},
+				},
 			},
 			extensions = {},
 		})
