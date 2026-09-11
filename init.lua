@@ -118,6 +118,13 @@ load_plugin("~/projects/nvim-file-tree-fuzzy-finder", {
 	end,
 })
 
+-- MY PLUGIN
+load_plugin("~/projects/nvim-diff-magik", {
+	config = function()
+		require("diff-magik").setup({})
+	end,
+})
+
 -- PLUGIN: https://github.com/stevearc/conform.nvim
 load_plugin("~/packages/nvim-plugins/conform.nvim", {
 	config = function()
