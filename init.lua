@@ -119,7 +119,7 @@ load_plugin("~/projects/nvim-file-tree-fuzzy-finder", {
 })
 
 -- MY PLUGIN
-load_plugin("~/projects/nvim-diff-magik", {
+load_plugin("~/projects/diff-magik.nvim", {
 	config = function()
 		require("diff-magik").setup({})
 	end,
@@ -365,8 +365,9 @@ load_plugin("~/packages/nvim-plugins/indent-blankline.nvim", {
 	end,
 })
 
--- LSP SECTION
--- Based on https://github.com/neovim/nvim-lspconfig for optimal configs
+-- ============================================================
+-- LSP
+-- ============================================================
 
 -- Bash
 -- require: sudo pacman -S bash-language-server
@@ -408,3 +409,192 @@ vim.lsp.config("gopls", {
 	root_markers = { "go.work", "go.mod", ".git" },
 })
 vim.lsp.enable("gopls")
+
+-- Lua
+-- sudo pacman -S lua-language-server
+vim.lsp.config("lua_ls", {
+	cmd = { "lua-language-server" },
+	filetypes = { "lua" },
+	root_markers = {
+		".luarc.json",
+		".luarc.jsonc",
+		".luacheckrc",
+		".stylua.toml",
+		"stylua.toml",
+		"selene.toml",
+		"selene.yml",
+		".git",
+	},
+	settings = {
+		Lua = {
+			runtime = { version = "LuaJIT" },
+			workspace = {
+				library = { vim.env.VIMRUNTIME },
+				checkThirdParty = false,
+			},
+			telemetry = { enable = false },
+		},
+	},
+})
+vim.lsp.enable("lua_ls")
+
+-- PHP
+-- pacman -S bubblewrap
+-- npm i intelephense -g
+-- Config ref: https://github.com/yaegassy/coc-intelephense
+vim.lsp.config("intelephense", {
+	cmd = {
+		"bwrap",
+		-- system binaries, libs, node runtime
+		"--ro-bind",
+		"/usr",
+		"/usr",
+		-- dns, certs, timezone
+		"--ro-bind",
+		"/etc",
+		"/etc",
+		-- empty writable home (hides real home)
+		"--tmpfs",
+		vim.fn.expand("~"),
+		-- intelephense binary (symlink target)
+		"--ro-bind",
+		vim.fn.expand("~/.local/bin"),
+		vim.fn.expand("~/.local/bin"),
+		-- intelephense js source
+		"--ro-bind",
+		vim.fn.expand("~/.local/lib"),
+		vim.fn.expand("~/.local/lib"),
+		-- arch merged-usr symlinks
+		"--symlink",
+		"usr/lib",
+		"/lib",
+		"--symlink",
+		"usr/lib",
+		"/lib64",
+		"--symlink",
+		"usr/bin",
+		"/bin",
+		-- node needs /proc/self
+		"--proc",
+		"/proc",
+		-- /dev/null, /dev/urandom
+		"--dev",
+		"/dev",
+		-- writable scratch space
+		"--tmpfs",
+		"/tmp",
+		-- project files (read-only)
+		"--ro-bind",
+		vim.fn.getcwd(),
+		vim.fn.getcwd(),
+		-- no network for process and children
+		"--unshare-net",
+		-- kill when neovim exits
+		"--die-with-parent",
+		"--",
+		vim.fn.expand("~/.local/bin/intelephense"),
+		"--stdio",
+	},
+	settings = {
+		intelephense = {
+			files = {
+				exclude = {
+					"**/.git/**",
+					"**/.svn/**",
+					"**/.hg/**",
+					"**/CVS/**",
+					"**/.DS_Store/**",
+					"**/node_modules/**",
+					"**/bower_components/**",
+					"**/vendor/**/{Tests,tests}/**",
+					"**/.history/**",
+					"**/vendor/**/vendor/**",
+					"**/*.blade.php",
+				},
+			},
+			diagnostics = { enable = true },
+			telemetry = { enabled = false },
+			completion = {
+				parameterCase = "camel",
+				propertyCase = "camel",
+			},
+		},
+	},
+})
+vim.lsp.enable("intelephense")
+
+-- Python
+-- pipx install basedpyright
+-- sudo pacman -S ruff
+vim.lsp.config("basedpyright", {
+	cmd = { "basedpyright-langserver", "--stdio" },
+	filetypes = { "python" },
+	root_markers = {
+		"pyproject.toml",
+		"setup.py",
+		"setup.cfg",
+		"requirements.txt",
+		"Pipfile",
+		"pyrightconfig.json",
+		".git",
+	},
+	settings = {
+		basedpyright = {
+			disableOrganizeImports = true,
+			analysis = {
+				typeCheckingMode = "basic",
+				useLibraryCodeForTypes = true,
+				autoImportCompletions = true,
+				autoSearchPaths = true,
+			},
+		},
+	},
+})
+vim.lsp.enable("basedpyright")
+vim.lsp.config("ruff", {
+	cmd = { "ruff", "server" },
+	filetypes = { "python" },
+	root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
+	on_attach = function(client, _)
+		client.server_capabilities.hoverProvider = false
+	end,
+})
+vim.lsp.enable("ruff")
+
+-- Rust
+-- sudo pacman -S rust-analyzer
+vim.lsp.config("rust_analyzer", {
+	cmd = { "rust-analyzer" },
+	filetypes = { "rust" },
+	root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+	on_attach = function(client, bufnr)
+		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+		if client:supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({ bufnr = bufnr })
+				end,
+			})
+		end
+	end,
+})
+vim.lsp.enable("rust_analyzer")
+
+-- Typescript
+-- sudo pacman -S typescript typescript-language-server
+vim.lsp.config("ts_ls", {
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	root_markers = {
+		{ "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "bun.lockb", "bun.lock" },
+		".git",
+	},
+	init_options = { hostInfo = "neovim" },
+	on_init = function(client, _)
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
+})
+vim.lsp.enable("ts_ls")
