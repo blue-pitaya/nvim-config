@@ -61,10 +61,32 @@ vim.filetype.add({ extension = { h = "c" } }) -- .h as C, not C++
 
 -- Module configs
 require("config.autocomplete")
-require("config.filetypes")
 require("config.keybindings")
-require("config.diagnostics")
 require("config.lazy")
+
+-- ============================================================
+-- Diagnostics
+-- ============================================================
+
+vim.diagnostic.config({
+	severity_sort = true,
+	virtual_text = true,
+	underline = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+			[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+			[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+			[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+		},
+	},
+})
 
 -- ============================================================
 -- Quickfix extensions
@@ -128,6 +150,12 @@ load_plugin("~/projects/diff-magik.nvim", {
 -- PLUGIN: https://github.com/stevearc/conform.nvim
 load_plugin("~/packages/nvim-plugins/conform.nvim", {
 	config = function()
+		vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+			pattern = { "*.blade.php" },
+			callback = function()
+				vim.bo.filetype = "blade"
+			end,
+		})
 		require("conform").setup({
 			formatters_by_ft = {
 				-- sudo pacman -S prettier
