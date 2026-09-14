@@ -523,6 +523,24 @@ vim.lsp.config("intelephense", {
 		vim.fn.expand("~/.local/bin/intelephense"),
 		"--stdio",
 	},
+	-- without filetypes/root_dir the server runs in single-file mode: no workspace index, no types
+	filetypes = { "php" },
+	-- mirrors lspconfig: prefer cwd when it sits inside the project root,
+	-- since cwd is the only project path bound into the sandbox
+	root_dir = function(bufnr, on_dir)
+		local cwd = vim.fn.getcwd()
+		local root = vim.fs.root(bufnr, { "composer.json", ".git" })
+		if root and vim.startswith(cwd, root) then
+			on_dir(cwd)
+		else
+			on_dir(root or cwd)
+		end
+	end,
+	-- index/stub cache; defaults are os.tmpdir() / os.homedir(), home is a tmpfs here
+	init_options = {
+		storagePath = "/tmp/intelephense",
+		globalStoragePath = "/tmp/intelephense-global",
+	},
 	settings = {
 		intelephense = {
 			files = {
