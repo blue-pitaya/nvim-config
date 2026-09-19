@@ -144,6 +144,8 @@ load_plugin("~/projects/nvim-file-tree-fuzzy-finder", {
 load_plugin("~/projects/diff-magik.nvim", {
 	config = function()
 		require("diff-magik").setup({})
+		vim.keymap.set("n", "<Leader>do", ":DiffMagikBrowser<CR>")
+		vim.keymap.set("n", "<Leader>dt", ":DiffMagikBrowserDiffToggle<CR>")
 	end,
 })
 
@@ -368,7 +370,6 @@ load_plugin("~/packages/nvim-plugins/diffview.nvim", {
 				},
 			},
 		})
-		vim.keymap.set("n", "<Leader>do", ":DiffviewOpen<CR>")
 		vim.keymap.set("n", "<Leader>dh", ":DiffviewFileHistory %<CR>")
 	end,
 })
