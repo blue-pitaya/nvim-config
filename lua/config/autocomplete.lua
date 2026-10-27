@@ -76,16 +76,45 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 		if client:supports_method("textDocument/completion") then
-			-- trigger on every printable keypress, like nvim-cmp did
-			local chars = {}
-			for i = 32, 126 do
-				table.insert(chars, string.char(i))
-			end
-			client.server_capabilities.completionProvider.triggerCharacters = chars
+			vim.bo[ev.buf].autocomplete = false
 
 			vim.lsp.completion.enable(true, client.id, ev.buf, {
 				autotrigger = true,
 			})
+
+			vim.api.nvim_create_autocmd("InsertCharPre", {
+				group = vim.api.nvim_create_augroup("LspIdentifierTrigger" .. ev.buf, { clear = true }),
+				buffer = ev.buf,
+				callback = function()
+					if vim.fn.pumvisible() ~= 0 or not vim.v.char:match("[%w_]") then
+						return
+					end
+					vim.schedule(function()
+						vim.lsp.completion.get()
+					end)
+				end,
+			})
+		end
+	end,
+})
+
+-- hack to enable easier cycling on signature help
+local float_group = vim.api.nvim_create_augroup("FloatFix", { clear = true })
+vim.api.nvim_create_autocmd("WinEnter", {
+	group = float_group,
+	callback = function()
+		local win = vim.api.nvim_get_current_win()
+		if vim.api.nvim_win_get_config(win).relative ~= "" then
+			vim.wo[win].concealcursor = "nc"
+		end
+	end,
+})
+vim.api.nvim_create_autocmd("TextChanged", {
+	group = float_group,
+	callback = function()
+		local win = vim.api.nvim_get_current_win()
+		if vim.api.nvim_win_get_config(win).relative ~= "" then
+			vim.api.nvim_win_set_height(win, vim.api.nvim_win_text_height(win, {}).all)
 		end
 	end,
 })

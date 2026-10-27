@@ -1,4 +1,4 @@
--- Custom settings
+-- Custom settingsinit
 vim.g.custom_autocomplete_enabled = true
 vim.g.custom_visible_tabs = false
 
@@ -63,6 +63,13 @@ vim.filetype.add({ extension = { h = "c" } }) -- .h as C, not C++
 require("config.autocomplete")
 require("config.keybindings")
 require("config.lazy")
+
+-- ============================================================
+-- Configuration
+-- ============================================================
+
+vim.g.enable_php_magik = false
+vim.g.enable_intelephense = true
 
 -- ============================================================
 -- Diagnostics
@@ -163,7 +170,7 @@ load_plugin("~/packages/nvim-plugins/conform.nvim", {
 				-- sudo pacman -S prettier
 				blade = { "blade-prettier" },
 				-- sudo pacman -S clang
-				c = { "clang-format" },
+				--c = { "clang-format" },
 				css = { "prettier" },
 				html = { "prettier" },
 				json = { "prettier" },
@@ -201,11 +208,11 @@ load_plugin("~/packages/nvim-plugins/conform.nvim", {
 			require("conform").format({ lsp_fallback = true })
 		end)
 		vim.keymap.set("n", "<C-S>", function()
-			require("conform").format({ lsp_fallback = true })
+			--require("conform").format({ lsp_fallback = true })
 			vim.cmd("wa")
 		end)
 		vim.keymap.set("i", "<C-S>", function()
-			require("conform").format({ lsp_fallback = true })
+			--require("conform").format({ lsp_fallback = true })
 			vim.cmd("stopinsert")
 			vim.cmd("wa")
 		end)
@@ -439,6 +446,32 @@ vim.lsp.config("gopls", {
 })
 vim.lsp.enable("gopls")
 
+-- Java
+-- git clone https://github.com/AlexandrosAlexiou/intellij-server.nvim.git
+load_plugin("~/packages/nvim-plugins/intellij-server.nvim", {
+	config = function()
+		-- Fringe fix for rename problems
+		local util = vim.lsp.util
+		local apply = util.apply_text_document_edit
+		util.apply_text_document_edit = function(edit, ...)
+			edit.textDocument.version = 0
+			return apply(edit, ...)
+		end
+
+		require("intellij-server").setup({
+			javaHome = "/usr/lib/jvm/default",
+			on_attach = function(client, _)
+				client.server_capabilities.semanticTokensProvider = nil
+			end,
+			settings = {
+				["jetbrains.java.hints.types.local variable"] = false,
+				["jetbrains.java.hints.types.call chain"] = false,
+				["jetbrains.java.hints.settings.method parameter"] = false,
+			},
+		})
+	end,
+})
+
 -- Lua
 -- sudo pacman -S lua-language-server
 vim.lsp.config("lua_ls", {
@@ -568,7 +601,12 @@ vim.lsp.config("intelephense", {
 		},
 	},
 })
-vim.lsp.enable("intelephense")
+if vim.g.enable_intelephense then
+	vim.lsp.enable("intelephense")
+end
+if vim.g.enable_php_magik then
+	require("my-plugins").init_php_magik()
+end
 
 -- Python
 -- pipx install basedpyright
