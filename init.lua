@@ -141,9 +141,36 @@ end
 require("my-plugins").setup()
 
 -- MY PLUGIN
-load_plugin("~/projects/nvim-file-tree-fuzzy-finder", {
+load_plugin("~/projects/fuzzy-magik.nvim", {
 	config = function()
 		require("fuzzy-magik").setup({})
+		vim.keymap.set("n", "<Space><Space>", function()
+			require("fuzzy-magik").find_files()
+		end)
+		vim.keymap.set("n", "<Space>g", function()
+			require("fuzzy-magik").live_grep()
+		end)
+		vim.keymap.set("n", "<Space>r", function()
+			require("fuzzy-magik").resume()
+		end)
+		vim.keymap.set("n", "<Space>j", function()
+			require("fuzzy-magik").buffers()
+		end)
+		vim.keymap.set("n", "<Space>n", function()
+			require("fuzzy-magik").lsp_dynamic_workspace_symbols()
+		end)
+		vim.keymap.set("n", "<Space>s", function()
+			require("fuzzy-magik").git_status()
+		end)
+		vim.keymap.set("n", "<Space>d", function()
+			require("fuzzy-magik").diagnostics()
+		end)
+		vim.keymap.set("n", "gd", function()
+			require("fuzzy-magik").lsp_definitions()
+		end)
+		vim.keymap.set("n", "gr", function()
+			require("fuzzy-magik").lsp_references()
+		end)
 	end,
 })
 
@@ -487,6 +514,9 @@ vim.lsp.config("lua_ls", {
 		"selene.yml",
 		".git",
 	},
+	on_attach = function(client, _)
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
 	settings = {
 		Lua = {
 			runtime = { version = "LuaJIT" },

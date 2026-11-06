@@ -117,7 +117,7 @@ vim.api.nvim_create_autocmd("TextChanged", {
 	group = float_group,
 	callback = function()
 		local win = vim.api.nvim_get_current_win()
-		if vim.api.nvim_win_get_config(win).relative ~= "" then
+		if vim.w[win]["textDocument/signatureHelp"] then
 			vim.api.nvim_win_set_height(win, vim.api.nvim_win_text_height(win, {}).all)
 		end
 	end,
