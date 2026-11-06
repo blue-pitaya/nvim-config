@@ -143,7 +143,7 @@ require("my-plugins").setup()
 -- MY PLUGIN
 load_plugin("~/projects/nvim-file-tree-fuzzy-finder", {
 	config = function()
-		require("nvim-file-tree-fuzzy-finder").setup({})
+		require("fuzzy-magik").setup({})
 	end,
 })
 

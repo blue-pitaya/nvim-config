@@ -79,8 +79,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.bo[ev.buf].autocomplete = false
 
 			vim.lsp.completion.enable(true, client.id, ev.buf, {
-				autotrigger = true,
+				autotrigger = vim.g.custom_autocomplete_enabled,
 			})
+
+			if not vim.g.custom_autocomplete_enabled then
+				return
+			end
 
 			vim.api.nvim_create_autocmd("InsertCharPre", {
 				group = vim.api.nvim_create_augroup("LspIdentifierTrigger" .. ev.buf, { clear = true }),

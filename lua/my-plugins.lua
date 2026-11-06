@@ -247,7 +247,7 @@ function M.init_php_magik()
 		vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 		if vim.lsp.completion then
 			-- the server's trigger characters are > $ :
-			vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+			vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = vim.g.custom_autocomplete_enabled })
 		end
 	end
 
