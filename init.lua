@@ -59,9 +59,81 @@ vim.api.nvim_create_autocmd("VimEnter", { -- clear jump list on startup
 })
 vim.filetype.add({ extension = { h = "c" } }) -- .h as C, not C++
 
+-- ============================================================
+-- Keybindings
+-- ============================================================
+
+-- General
+vim.keymap.set("n", "<C-S>", ":wa<CR>")
+vim.keymap.set("i", "<C-S>", "<ESC>:wa<CR>")
+vim.keymap.set("n", "<Space>", "<nop>")
+vim.keymap.set("v", "Y", '"+y') --copy to system-wide register
+vim.keymap.set("n", "<Leader>nh", ":nohlsearch<CR>")
+vim.keymap.set("v", "<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>')
+vim.keymap.set("n", "vil", "^vg_")
+vim.keymap.set("n", "<C-o>", "<C-o>zz")
+vim.keymap.set("n", "<C-i>", "<C-i>zz")
+vim.keymap.set("x", "<leader>p", '"_dP') -- Paste text on visual without changing register content
+vim.keymap.set("n", "<Leader>q", ":tabclose<CR>")
+vim.keymap.set("n", "<C-P>", ":tabnext<CR>")
+vim.keymap.set("n", "n", "nzz")
+vim.keymap.set("n", "N", "Nzz")
+
+-- Open file from quickfix window by pressing "o"
+vim.cmd([[autocmd FileType qf nnoremap <buffer> o :.cc<CR>]])
+
+-- Window bindings
+vim.keymap.set("n", "<C-Q>", "<C-W>q")
+vim.keymap.set("n", "<C-J>", "<C-W>j")
+vim.keymap.set("n", "<C-K>", "<C-W>k")
+vim.keymap.set("n", "<C-H>", "<C-W>h")
+vim.keymap.set("n", "<C-L>", "<C-W>l")
+vim.keymap.set("n", "+", "<C-W>+")
+vim.keymap.set("n", "-", "<C-W>-")
+vim.keymap.set("n", "<leader>v", ":vs<CR>")
+vim.keymap.set("n", "<leader>s", ":split<CR>")
+vim.keymap.set("n", "<C-space>", "<C-W>r")
+
+-- LSP
+vim.keymap.set("n", "J", function()
+	vim.lsp.buf.code_action()
+end)
+vim.keymap.set("n", "K", function()
+	vim.lsp.buf.hover({ border = "rounded" })
+end)
+vim.keymap.set("n", "L", function()
+	vim.lsp.codelens.run()
+end)
+vim.keymap.set("n", "gi", function()
+	vim.lsp.buf.implementation()
+end)
+vim.keymap.set("n", "<Leader>r", function()
+	vim.lsp.buf.rename()
+end)
+vim.keymap.set("n", "gk", function()
+	vim.lsp.buf.signature_help({ border = "rounded" })
+end)
+
+-- Neovim since some version is adding default keybindings for LSP actions that triggers timeoutlen
+-- when i want to use "gr" as to show LSP references defined below
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "grt")
+
+-- Debugging
+vim.keymap.set("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>")
+vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<CR>")
+vim.keymap.set("n", "<F10>", ":lua require'dap'.close();require'dapui'.close()<CR>")
+vim.keymap.set("n", "<F2><F2>", ":lua require'dapui'.toggle()<CR>")
+vim.keymap.set("n", "<Leader><F2>", ":lua require'dap'.repl.toggle()<CR>")
+
+-- ============================================================
 -- Module configs
+-- ============================================================
+
 require("config.autocomplete")
-require("config.keybindings")
 require("config.lazy")
 
 -- ============================================================
