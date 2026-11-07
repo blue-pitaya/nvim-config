@@ -50,7 +50,6 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 })
 
 -- Startup
-vim.cmd("colorscheme pitaya")
 vim.api.nvim_create_autocmd("VimEnter", { -- clear jump list on startup
 	pattern = "*",
 	callback = function()
@@ -58,6 +57,197 @@ vim.api.nvim_create_autocmd("VimEnter", { -- clear jump list on startup
 	end,
 })
 vim.filetype.add({ extension = { h = "c" } }) -- .h as C, not C++
+
+-- ============================================================
+-- Theme
+-- ============================================================
+
+vim.opt.background = "dark"
+local c = {
+	c24 = "#005f87",
+	c38 = "#00afd7",
+	c51 = "#00ffff",
+	c58 = "#5f5f00",
+	c75 = "#5fafff",
+	c160 = "#d70000",
+	c164 = "#d700d7",
+	c234 = "#1c1c1c",
+	c235 = "#262626",
+	c236 = "#303030",
+	c237 = "#3a3a3a",
+	c239 = "#4e4e4e",
+	c240 = "#585858",
+	c241 = "#626262",
+	c243 = "#767676",
+	c249 = "#b2b2b2",
+	c254 = "#e4e4e4",
+	white = "#e7e7e7",
+	black = "#0f0f0f",
+	near_black = "#151515",
+	red = "#e77969",
+	blue = "#7fbec9",
+	froggy = "#60c9c3",
+	yellow = "#c6db73",
+	dead_orange = "#cf9d81",
+	orange = "#f2a475",
+	pink = "#ff64b5",
+	subtle = "#908caa",
+	subtle_darker = "#444351",
+	love = "#eb6f92",
+	rose = "#ea9a97",
+	iris = "#c4a7e7",
+	subtle_green = "#61977c",
+	office_blue = "#31445c",
+	dark_green = "#062d06",
+	dark_red = "#440606",
+	dark_blue = "#141c2e",
+	bright_green = "#b8bb26",
+	bright_yellow = "#fabd2f",
+	deep_red = "#af0000",
+	olive = "#707000",
+	pale_blue = "#c0caf5",
+	navy_black = "#1a1b26",
+	cornflower = "#7aa2f7",
+	lilac = "#bb9af7",
+	slate = "#565f89",
+}
+vim.api.nvim_set_hl(0, "Normal", { fg = c.white, bg = c.near_black })
+vim.api.nvim_set_hl(0, "Search", { bg = c.office_blue })
+vim.api.nvim_set_hl(0, "CurSearch", { link = "Search" })
+-- Borders
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = c.c239 })
+vim.api.nvim_set_hl(0, "Breakpoint", { fg = c.c164 })
+vim.api.nvim_set_hl(0, "Operator", { link = "Normal" })
+vim.api.nvim_set_hl(0, "Number", { fg = c.blue })
+vim.api.nvim_set_hl(0, "Float", { link = "Number" })
+vim.api.nvim_set_hl(0, "Keyword", { fg = c.red })
+vim.api.nvim_set_hl(0, "Conditional", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "Include", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "Repeat", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "Statement", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "Type", { fg = c.froggy })
+vim.api.nvim_set_hl(0, "Typedef", { link = "Type" })
+vim.api.nvim_set_hl(0, "Special", { link = "Type" })
+vim.api.nvim_set_hl(0, "SpecialChar", { link = "Type" })
+vim.api.nvim_set_hl(0, "String", { fg = c.dead_orange })
+vim.api.nvim_set_hl(0, "Function", { fg = c.yellow })
+vim.api.nvim_set_hl(0, "Comment", { fg = c.c241 })
+vim.api.nvim_set_hl(0, "Boolean", { fg = c.rose })
+vim.api.nvim_set_hl(0, "Constant", { fg = c.iris })
+vim.api.nvim_set_hl(0, "Debug", { fg = c.rose })
+vim.api.nvim_set_hl(0, "Define", { fg = c.iris })
+vim.api.nvim_set_hl(0, "Delimiter", { fg = c.subtle })
+vim.api.nvim_set_hl(0, "Exception", { fg = c.c38 })
+vim.api.nvim_set_hl(0, "Label", { fg = c.blue })
+vim.api.nvim_set_hl(0, "Macro", { fg = c.iris })
+vim.api.nvim_set_hl(0, "PreCondit", { fg = c.iris })
+vim.api.nvim_set_hl(0, "PreProc", { fg = c.c38 })
+vim.api.nvim_set_hl(0, "StorageClass", { fg = c.blue })
+vim.api.nvim_set_hl(0, "Structure", { fg = c.blue })
+vim.api.nvim_set_hl(0, "Tag", { fg = c.subtle })
+vim.api.nvim_set_hl(0, "Underlined", { underline = true })
+vim.api.nvim_set_hl(0, "Todo", { link = "Comment" })
+vim.api.nvim_set_hl(0, "Attribute", { fg = c.yellow })
+vim.api.nvim_set_hl(0, "Property", { link = "Normal" })
+-- StatusLine
+vim.api.nvim_set_hl(0, "StatusLine", { fg = c.c249, bg = c.c234 })
+vim.api.nvim_set_hl(0, "StatusLineNC", { link = "Normal" })
+-- General
+vim.api.nvim_set_hl(0, "VisualNOS", { fg = c.c249 })
+vim.api.nvim_set_hl(0, "Cursor", { reverse = true })
+vim.api.nvim_set_hl(0, "Visual", { bg = c.c24 })
+vim.api.nvim_set_hl(0, "WildMenu", { fg = c.c249, bg = c.c234 })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = c.c236 })
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = c.c254 })
+vim.api.nvim_set_hl(0, "TabLineFill", { bg = c.c234 })
+vim.api.nvim_set_hl(0, "LineNr", { fg = c.c243 })
+vim.api.nvim_set_hl(0, "Directory", { fg = c.c75 })
+vim.api.nvim_set_hl(0, "Identifier", { fg = c.c254 })
+vim.api.nvim_set_hl(0, "TabLine", { fg = c.c254, bg = c.c234 })
+vim.api.nvim_set_hl(0, "TabLineSel", { fg = c.c254, bg = c.c24 })
+vim.api.nvim_set_hl(0, "VertSplit", { fg = c.c237, bg = c.c237 })
+vim.api.nvim_set_hl(0, "Error", { fg = c.c160 })
+vim.api.nvim_set_hl(0, "NonText", { fg = c.c240 })
+vim.api.nvim_set_hl(0, "SignColumn", {})
+vim.api.nvim_set_hl(0, "SpecialKey", { fg = c.c249 })
+vim.api.nvim_set_hl(0, "IncSearch", { bg = c.c58 })
+vim.api.nvim_set_hl(0, "Folded", { fg = c.c239, bg = c.c234 })
+vim.api.nvim_set_hl(0, "cColumn", { bg = c.c234 })
+vim.api.nvim_set_hl(0, "ErrorMsg", { bg = c.c234 })
+vim.api.nvim_set_hl(0, "WarningMsg", { bg = c.c234 })
+vim.api.nvim_set_hl(0, "LspCodeLens", { fg = c.c241 })
+vim.api.nvim_set_hl(0, "Constructor", { link = "Function" })
+-- Border
+vim.api.nvim_set_hl(0, "NormalFloat", {})
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = c.c241 })
+-- Diff
+vim.api.nvim_set_hl(0, "DiffChange", { bg = c.dark_blue })
+vim.api.nvim_set_hl(0, "DiffText", { bg = c.dark_blue })
+vim.api.nvim_set_hl(0, "DiffAdd", { bg = c.dark_green })
+vim.api.nvim_set_hl(0, "DiffDelete", { bg = c.dark_red })
+vim.api.nvim_set_hl(0, "DiffviewDiffDelete", { fg = c.dark_red, bg = c.dark_red })
+vim.api.nvim_set_hl(0, "DiffviewDiffDeleteDim", { fg = c.c235 })
+vim.api.nvim_set_hl(0, "FoldColumn", { fg = c.c51 })
+-- Parens
+vim.api.nvim_set_hl(0, "MatchParen", { bg = c.c58 })
+-- Markdown
+vim.api.nvim_set_hl(0, "@markup.heading.1", { fg = c.red })
+vim.api.nvim_set_hl(0, "@markup.heading.2", { fg = c.orange })
+vim.api.nvim_set_hl(0, "@markup.heading.3", { fg = c.yellow })
+vim.api.nvim_set_hl(0, "@markup.heading.4", { fg = c.iris })
+vim.api.nvim_set_hl(0, "@markup.heading.5", { fg = c.subtle })
+vim.api.nvim_set_hl(0, "@markup.heading.6", { fg = c.subtle })
+vim.api.nvim_set_hl(0, "@spell.markdown", { fg = c.white, bg = c.black })
+vim.api.nvim_set_hl(0, "@markup.list", { fg = c.pink })
+vim.api.nvim_set_hl(0, "@markup.list.checked", { fg = c.subtle_green })
+vim.api.nvim_set_hl(0, "@markup.list.unchecked", { fg = c.rose })
+vim.api.nvim_set_hl(0, "@markup.link", { fg = c.blue })
+vim.api.nvim_set_hl(0, "@string.escape", { bg = c.subtle_darker })
+vim.api.nvim_set_hl(0, "@markup.strong", {}) -- remove BOLD rule
+-- HTML
+vim.api.nvim_set_hl(0, "@tag.attribute", { fg = c.yellow })
+-- JSON
+vim.api.nvim_set_hl(0, "jsonKeyword", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "jsonBoolean", { link = "Boolean" })
+-- Diagnostics
+-- TODO: better colors for signs
+vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = c.deep_red })
+vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = c.olive })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { sp = c.deep_red, underline = true })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { sp = c.olive, underline = true })
+-- Misc
+vim.api.nvim_set_hl(0, "htmlTagName", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "@string.special.symbol", { fg = c.iris })
+vim.api.nvim_set_hl(0, "@comment.documentation", { fg = c.subtle_green })
+vim.api.nvim_set_hl(0, "Title", { link = "Normal" })
+vim.api.nvim_set_hl(0, "SpecialComment", { link = "Special" })
+vim.api.nvim_set_hl(0, "CursorColumn", { link = "CursorLine" })
+-- vim highlight groups
+vim.api.nvim_set_hl(0, "vimEnvvar", { link = "Constant" })
+vim.api.nvim_set_hl(0, "vimHiKeyList", { link = "Constant" })
+vim.api.nvim_set_hl(0, "vimCommand", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "vimUsrCmd", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "vimIsCommand", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "vimNotFunc", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "vimUserFunc", { link = "Function" })
+vim.api.nvim_set_hl(0, "vimCommentTitle", { link = "Special" })
+vim.api.nvim_set_hl(0, "@string.special.url.html", {}) -- disable underline for <a> in html
+vim.api.nvim_set_hl(0, "@constructor.php", { link = "Function" }) -- show constructor as function
+--neotree
+vim.api.nvim_set_hl(0, "NeoTreeGitUntracked", { link = "NeoTreeGitModified" })
+--snippets
+vim.api.nvim_set_hl(0, "SnippetTabstop", { bg = c.c234 })
+vim.api.nvim_set_hl(0, "Changed", { fg = c.bright_yellow })
+vim.api.nvim_set_hl(0, "Added", { fg = c.bright_green })
+vim.api.nvim_set_hl(0, "@keyword.coroutine.typescript", { fg = c.love })
+vim.api.nvim_set_hl(0, "Pmenu", { fg = c.pale_blue, bg = c.navy_black })
+vim.api.nvim_set_hl(0, "PmenuSel", { fg = c.navy_black, bg = c.cornflower })
+vim.api.nvim_set_hl(0, "PmenuKind", { fg = c.lilac, bg = c.navy_black })
+vim.api.nvim_set_hl(0, "PmenuKindSel", { fg = c.navy_black, bg = c.cornflower })
+vim.api.nvim_set_hl(0, "PmenuExtra", { fg = c.slate, bg = c.navy_black })
+vim.api.nvim_set_hl(0, "PmenuExtraSel", { fg = c.navy_black, bg = c.cornflower })
+vim.api.nvim_set_hl(0, "PmenuSbar", { bg = c.navy_black })
+vim.api.nvim_set_hl(0, "PmenuThumb", { bg = c.slate })
 
 -- ============================================================
 -- Keybindings
@@ -236,6 +426,12 @@ load_plugin("~/projects/fuzzy-magik.nvim", {
 		end)
 		vim.keymap.set("n", "<Space>d", function()
 			require("fuzzy-magik").diagnostics()
+		end)
+		vim.keymap.set("n", "<C-n>", function()
+			require("fuzzy-magik").file_browser()
+		end)
+		vim.keymap.set("n", "<Space>e", function()
+			require("fuzzy-magik").reveal()
 		end)
 		vim.keymap.set("n", "gd", function()
 			require("fuzzy-magik").lsp_definitions()
