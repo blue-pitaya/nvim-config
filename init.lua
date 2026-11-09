@@ -1,4 +1,4 @@
--- Custom settingsinit
+-- Custom settings
 vim.g.custom_autocomplete_enabled = true
 vim.g.custom_visible_tabs = false
 
@@ -258,8 +258,6 @@ vim.api.nvim_set_hl(0, "vimUserFunc", { link = "Function" })
 vim.api.nvim_set_hl(0, "vimCommentTitle", { link = "Special" })
 vim.api.nvim_set_hl(0, "@string.special.url.html", {}) -- disable underline for <a> in html
 vim.api.nvim_set_hl(0, "@constructor.php", { link = "Function" }) -- show constructor as function
---neotree
-vim.api.nvim_set_hl(0, "NeoTreeGitUntracked", { link = "NeoTreeGitModified" })
 --snippets
 vim.api.nvim_set_hl(0, "SnippetTabstop", { bg = c.c234 })
 vim.api.nvim_set_hl(0, "Changed", { fg = c.bright_yellow })
@@ -336,13 +334,6 @@ vim.keymap.del("n", "grr")
 vim.keymap.del("n", "gra")
 vim.keymap.del("n", "grn")
 vim.keymap.del("n", "grt")
-
--- Debugging
-vim.keymap.set("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>")
-vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<CR>")
-vim.keymap.set("n", "<F10>", ":lua require'dap'.close();require'dapui'.close()<CR>")
-vim.keymap.set("n", "<F2><F2>", ":lua require'dapui'.toggle()<CR>")
-vim.keymap.set("n", "<Leader><F2>", ":lua require'dap'.repl.toggle()<CR>")
 
 -- ============================================================
 -- Module configs

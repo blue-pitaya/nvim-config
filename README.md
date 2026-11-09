@@ -20,6 +20,9 @@ Requirements: `git`, `tree-sitter-cli` (`sudo pacman -S tree-sitter-cli`), a C c
 | javascript | https://github.com/tree-sitter/tree-sitter-javascript |
 | typescript | https://github.com/tree-sitter/tree-sitter-typescript |
 | tsx | https://github.com/tree-sitter/tree-sitter-typescript |
+| php_only | https://github.com/tree-sitter/tree-sitter-php |
+| html | https://github.com/tree-sitter/tree-sitter-html |
+| blade | https://github.com/EmranMR/tree-sitter-blade |
 
 ### Compile a parser
 
@@ -37,7 +40,7 @@ The output file name must be the parser name (`<parser>.so`).
 git clone https://github.com/nvim-treesitter/nvim-treesitter
 mkdir -p ~/.local/share/nvim/site/queries
 cd nvim-treesitter/runtime/queries
-cp -r bash c cpp go java lua php php_only python rust javascript typescript tsx ecma jsx ~/.local/share/nvim/site/queries/
+cp -r bash c cpp go java lua php php_only python rust javascript typescript tsx ecma jsx html html_tags blade ~/.local/share/nvim/site/queries/
 ```
 
 ### Check
