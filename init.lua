@@ -57,6 +57,31 @@ vim.api.nvim_create_autocmd("VimEnter", { -- clear jump list on startup
 	end,
 })
 vim.filetype.add({ extension = { h = "c" } }) -- .h as C, not C++
+vim.treesitter.language.register("bash", "sh")
+vim.treesitter.language.register("javascript", "javascriptreact")
+vim.treesitter.language.register("tsx", "typescriptreact")
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"bash",
+		"sh",
+		"c",
+		"cpp",
+		"go",
+		"java",
+		"lua",
+		"php",
+		"python",
+		"rust",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"blade",
+	},
+	callback = function(ev)
+		vim.treesitter.start(ev.buf)
+	end,
+})
 
 -- ============================================================
 -- Theme
@@ -324,7 +349,6 @@ vim.keymap.set("n", "<Leader><F2>", ":lua require'dap'.repl.toggle()<CR>")
 -- ============================================================
 
 require("config.autocomplete")
-require("config.lazy")
 
 -- ============================================================
 -- Configuration
@@ -411,6 +435,9 @@ load_plugin("~/projects/fuzzy-magik.nvim", {
 		end)
 		vim.keymap.set("n", "<Space>g", function()
 			require("fuzzy-magik").live_grep()
+		end)
+		vim.keymap.set("x", "<Space>g", function()
+			require("fuzzy-magik").live_grep_selection()
 		end)
 		vim.keymap.set("n", "<Space>r", function()
 			require("fuzzy-magik").resume()
